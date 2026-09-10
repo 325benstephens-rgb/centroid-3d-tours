@@ -7,11 +7,8 @@ export default function Footer() {
     <footer className="border-t border-charcoal-100 bg-charcoal-50 text-charcoal-600">
       <Container className="grid gap-10 py-14 sm:grid-cols-2 lg:grid-cols-4">
         <div>
-          <div className="flex items-center gap-2.5">
-            <img src="/icons/logo.jpg" alt="" className="h-9 w-9 flex-none rounded-lg object-contain" />
-            <p className="font-display text-lg font-extrabold text-charcoal-900">{BUSINESS_NAME}</p>
-          </div>
-          <p className="mt-3 text-sm leading-relaxed text-charcoal-500">{TAGLINE}</p>
+          <p className="font-display text-lg font-extrabold text-charcoal-900">{BUSINESS_NAME}</p>
+          <p className="mt-2 text-sm leading-relaxed text-charcoal-500">{TAGLINE}</p>
           <p className="mt-4 text-sm text-charcoal-500">Based in St. Louis, MO</p>
         </div>
 

@@ -13,8 +13,8 @@ export default function About() {
 
       <section className="bg-paper py-16 sm:py-24">
         <Container className="max-w-3xl">
-          <img src="/icons/logo.jpg" alt="" className="h-16 w-16 rounded-2xl object-contain" />
-          <div className="mt-6">
+          <div className="flex items-center gap-4">
+            <img src="/icons/logo.jpg" alt="" className="h-14 w-14 flex-none rounded-2xl object-contain" />
             <SectionHeading heading={ABOUT_CONTENT.heading} />
           </div>
 
