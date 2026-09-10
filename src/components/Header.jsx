@@ -23,9 +23,12 @@ export default function Header() {
       }`}
     >
       <Container className="flex h-20 items-center justify-between">
-        <NavLink to="/" className="flex flex-col leading-tight" onClick={() => setOpen(false)}>
-          <span className="font-display text-xl font-extrabold tracking-tight text-charcoal-900">{BUSINESS_NAME}</span>
-          <span className="font-display text-sm font-bold italic text-accent-500">in st. louis</span>
+        <NavLink to="/" className="flex items-center gap-2.5" onClick={() => setOpen(false)}>
+          <img src="/icons/logo.jpg" alt="" className="h-10 w-10 flex-none rounded-lg object-contain" />
+          <span className="flex flex-col leading-tight">
+            <span className="font-display text-xl font-extrabold tracking-tight text-charcoal-900">{BUSINESS_NAME}</span>
+            <span className="font-display text-sm font-bold italic text-accent-500">in st. louis</span>
+          </span>
         </NavLink>
 
         <nav className="hidden items-center gap-8 lg:flex">
