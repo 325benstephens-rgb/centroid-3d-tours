@@ -29,3 +29,12 @@ export const NAV_LINKS = [
 export const PRIMARY_CTA = { label: 'Book a Tour', to: '/contact' }
 
 export const SOCIAL_PROOF_NOTE = 'Every property is visited and every report is personally reviewed.'
+
+// ---------------------------------------------------------------------------
+// CONTACT FORM BACKEND (Formspree)
+// Sign up free at https://formspree.io, create a form, and paste its
+// endpoint below (Formspree calls it the form's "endpoint" — it looks like
+// https://formspree.io/f/xxxxxxxx). Submissions get emailed to whatever
+// address you set as that form's recipient in the Formspree dashboard.
+// ---------------------------------------------------------------------------
+export const FORMSPREE_ENDPOINT = 'https://formspree.io/f/mnpqwvjy'

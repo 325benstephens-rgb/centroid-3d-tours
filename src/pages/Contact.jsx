@@ -5,7 +5,7 @@ import SectionHeading from '../components/SectionHeading.jsx'
 import Button from '../components/Button.jsx'
 import { PhoneIcon, MailIcon, MapPinIcon } from '../components/icons.jsx'
 import { CONTACT_CONTENT } from '../content/contact.js'
-import { CONTACT } from '../content/site.js'
+import { CONTACT, FORMSPREE_ENDPOINT } from '../content/site.js'
 
 const EMPTY_FORM = {
   name: '',
@@ -18,44 +18,31 @@ const EMPTY_FORM = {
 
 export default function Contact() {
   const [form, setForm] = useState(EMPTY_FORM)
-  const [submitted, setSubmitted] = useState(false)
+  const [status, setStatus] = useState('idle') // idle | sending | success | error
 
   function handleChange(e) {
     const { name, value } = e.target
     setForm((prev) => ({ ...prev, [name]: value }))
   }
 
-  function handleSubmit(e) {
+  async function handleSubmit(e) {
     e.preventDefault()
+    setStatus('sending')
 
-    // -------------------------------------------------------------------
-    // BACKEND INTEGRATION GOES HERE.
-    //
-    // This form currently only updates local state — nothing is sent
-    // anywhere. When you're ready to receive real submissions, wire this
-    // up to a form backend, for example:
-    //
-    //   Formspree:
-    //     await fetch('https://formspree.io/f/your-form-id', {
-    //       method: 'POST',
-    //       headers: { Accept: 'application/json' },
-    //       body: new FormData(e.target),
-    //     })
-    //
-    //   Netlify Forms (if hosting on Netlify):
-    //     add a hidden `<input type="hidden" name="form-name" value="contact" />`
-    //     and `data-netlify="true"` on the <form>, then let Netlify handle it.
-    //
-    //   EmailJS (send straight to your inbox, no server required):
-    //     import emailjs from '@emailjs/browser'
-    //     await emailjs.send(SERVICE_ID, TEMPLATE_ID, form, PUBLIC_KEY)
-    //
-    // Any of these keep this a static site with no custom backend to run.
-    // -------------------------------------------------------------------
-    console.log('Contact form submitted (not yet wired to a backend):', form)
+    try {
+      const response = await fetch(FORMSPREE_ENDPOINT, {
+        method: 'POST',
+        headers: { Accept: 'application/json' },
+        body: new FormData(e.target),
+      })
 
-    setSubmitted(true)
-    setForm(EMPTY_FORM)
+      if (!response.ok) throw new Error('Formspree request failed')
+
+      setStatus('success')
+      setForm(EMPTY_FORM)
+    } catch (err) {
+      setStatus('error')
+    }
   }
 
   return (
@@ -106,10 +93,15 @@ export default function Contact() {
           </div>
 
           <div className="rounded-3xl bg-white p-6 ring-1 ring-charcoal-900/10 sm:p-10">
-            {submitted && (
+            {status === 'success' && (
               <div className="mb-6 rounded-xl bg-accent-50 px-4 py-3 text-sm font-medium text-accent-700">
-                Thanks — this is reaching your inbox once the form is wired up. For now, feel free to also reach out
-                directly using the info to the left.
+                Thanks — your request is in. We'll follow up within a business day.
+              </div>
+            )}
+            {status === 'error' && (
+              <div className="mb-6 rounded-xl bg-red-50 px-4 py-3 text-sm font-medium text-red-700">
+                Something went wrong sending that — please try again, or reach out directly using the info to the
+                left.
               </div>
             )}
 
@@ -154,8 +146,13 @@ export default function Contact() {
               </div>
 
               <div className="sm:col-span-2">
-                <Button type="submit" variant="primary" className="w-full sm:w-auto">
-                  Send Request
+                <Button
+                  type="submit"
+                  variant="primary"
+                  className="w-full disabled:opacity-60 sm:w-auto"
+                  disabled={status === 'sending'}
+                >
+                  {status === 'sending' ? 'Sending…' : 'Send Request'}
                 </Button>
               </div>
             </form>
