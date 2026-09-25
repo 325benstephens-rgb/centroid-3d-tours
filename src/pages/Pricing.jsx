@@ -27,7 +27,7 @@ export default function Pricing() {
             ))}
           </div>
 
-          <div className="mx-auto mt-6 max-w-5xl rounded-3xl bg-white p-8 ring-1 ring-charcoal-200 sm:p-10">
+          <div className="reveal mx-auto mt-6 max-w-5xl rounded-3xl bg-white p-8 ring-1 ring-charcoal-200 sm:p-10">
             <h3 className="font-display text-lg font-bold text-charcoal-900">Every tour includes</h3>
             <ul className="mt-5 grid gap-3 sm:grid-cols-2">
               {PRICING_INCLUDED.map((item) => (

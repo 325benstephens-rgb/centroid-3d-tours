@@ -1,15 +1,40 @@
+import { useRef } from 'react'
 import SEO from '../components/SEO.jsx'
 import Container from '../components/Container.jsx'
 import Button from '../components/Button.jsx'
 import SectionHeading from '../components/SectionHeading.jsx'
 import StatCard from '../components/StatCard.jsx'
+import Marquee from '../components/Marquee.jsx'
 import { ICONS } from '../components/icons.jsx'
+import { gsap, useGSAP } from '../lib/gsap.js'
 import { HERO, HOW_IT_WORKS, HOME_CTA_BANNER, SAMPLE_TOUR_NOTE } from '../content/home.js'
 import { STATS } from '../content/stats.js'
 import { SOCIAL_PROOF_NOTE } from '../content/site.js'
 import { RICOH360_TOUR_URL } from '../content/sampleTour.js'
 
+const MARQUEE_ITEMS = [
+  'ST. LOUIS LANDLORDS',
+  'INSURANCE-READY DOCUMENTATION',
+  'LISTING-READY 360° TOURS',
+  'FLAT RATE · NO CONTRACTS',
+]
+
 export default function Home() {
+  const heroRef = useRef(null)
+
+  useGSAP(
+    () => {
+      gsap.from('.hero-in', {
+        y: 24,
+        autoAlpha: 0,
+        duration: 0.9,
+        ease: 'power3.out',
+        stagger: 0.12,
+      })
+    },
+    { scope: heroRef },
+  )
+
   return (
     <>
       <SEO
@@ -19,28 +44,28 @@ export default function Home() {
       />
 
       {/* Hero + Sample Tour */}
-      <section className="overflow-hidden bg-white">
+      <section ref={heroRef} className="overflow-hidden bg-white">
         <Container className="grid items-center gap-12 py-16 sm:py-20 lg:grid-cols-2 lg:py-28">
           <div>
-            <h1 className="font-display text-4xl font-extrabold leading-[1.05] tracking-tight text-charcoal-900 sm:text-5xl">
+            <h1 className="hero-in font-display text-4xl font-extrabold leading-[1.05] tracking-tight text-charcoal-900 sm:text-5xl">
               {HERO.heading}
             </h1>
-            <p className="mt-4 font-display text-xl font-bold text-charcoal-700">
+            <p className="hero-in mt-4 font-display text-xl font-bold text-charcoal-700">
               {HERO.tagline.map((part, i) => (
                 <span key={i} className={part.highlight ? 'text-accent-500' : undefined}>
                   {part.text}
                 </span>
               ))}
             </p>
-            <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+            <div className="hero-in mt-8 flex flex-col gap-3 sm:flex-row">
               <Button to={HERO.primaryCta.to} variant="primary">
                 {HERO.primaryCta.label}
               </Button>
             </div>
-            <p className="mt-8 text-sm leading-relaxed text-charcoal-400">{SOCIAL_PROOF_NOTE}</p>
+            <p className="hero-in mt-8 text-sm leading-relaxed text-charcoal-400">{SOCIAL_PROOF_NOTE}</p>
           </div>
 
-          <div className="w-full">
+          <div className="hero-in w-full">
             <p className="mb-3 text-sm font-semibold text-charcoal-500">
               Sample Tour <span className="font-normal text-charcoal-400">— {SAMPLE_TOUR_NOTE}</span>
             </p>
@@ -66,8 +91,14 @@ export default function Home() {
         </Container>
       </section>
 
+      {/* Kinetic typography ribbon */}
+      <Marquee
+        items={MARQUEE_ITEMS}
+        className="border-y border-charcoal-900/10 bg-charcoal-900 py-4 text-sm font-bold uppercase tracking-wide text-white sm:py-5 sm:text-base"
+      />
+
       {/* How it works */}
-      <section className="bg-white pb-16 sm:pb-24">
+      <section className="bg-white py-16 sm:py-24">
         <Container>
           <SectionHeading eyebrow="How it works" heading="One shoot, delivered as a tour and a paper trail" />
 
@@ -77,7 +108,7 @@ export default function Home() {
               return (
                 <div
                   key={item.step}
-                  className="flex flex-col rounded-3xl border border-charcoal-100 bg-white p-8 shadow-card transition-shadow duration-200 hover:shadow-lift"
+                  className="reveal flex flex-col rounded-3xl border border-charcoal-100 bg-white p-8 shadow-card transition-shadow duration-200 hover:shadow-lift"
                 >
                   {Icon && <Icon className="h-20 w-20" />}
                   <span className="mt-5 font-display text-2xl font-extrabold text-accent-500">{item.step}</span>
@@ -110,7 +141,7 @@ export default function Home() {
       {/* CTA banner */}
       <section className="bg-white py-16 sm:py-24">
         <Container>
-          <div className="flex flex-col items-center gap-6 rounded-[32px] bg-accent-500 px-8 py-16 text-center sm:px-16">
+          <div className="reveal flex flex-col items-center gap-6 rounded-[32px] bg-accent-500 px-8 py-16 text-center sm:px-16">
             <h2 className="font-display text-3xl font-extrabold tracking-tight text-white sm:text-4xl">
               {HOME_CTA_BANNER.heading}
             </h2>

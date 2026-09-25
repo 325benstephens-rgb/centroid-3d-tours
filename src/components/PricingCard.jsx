@@ -2,7 +2,7 @@ export default function PricingCard({ tier }) {
   const { name, price, priceNote, description, icon } = tier
 
   return (
-    <div className="flex h-full flex-col rounded-3xl bg-white p-8 ring-1 ring-charcoal-200 transition-shadow duration-200 hover:shadow-lift">
+    <div className="reveal flex h-full flex-col rounded-3xl bg-white p-8 ring-1 ring-charcoal-200 transition-shadow duration-200 hover:shadow-lift">
       <div className="flex-1">
         {icon && <img src={icon} alt="" className="h-24 w-24 object-contain" />}
         <h3 className="mt-4 font-display text-2xl font-bold text-charcoal-900">{name}</h3>

@@ -14,7 +14,7 @@ export default function Services() {
 
       <section className="bg-white py-16 sm:py-24">
         <Container className="grid gap-10 lg:grid-cols-[1fr_1.2fr] lg:gap-16">
-          <div>
+          <div className="reveal">
             <h2 className="font-display text-3xl font-extrabold tracking-tight text-charcoal-900 sm:text-4xl">
               {LANDLORD_SERVICE.title}
             </h2>
@@ -25,10 +25,10 @@ export default function Services() {
           </div>
 
           <div>
-            <p className="mb-3 text-base font-semibold text-accent-600">Services</p>
+            <p className="reveal mb-3 text-base font-semibold text-accent-600">Services</p>
             <ul className="space-y-4">
               {LANDLORD_SERVICE.included.map((item) => (
-                <li key={item} className="flex items-start gap-3 rounded-2xl bg-white p-4 shadow-card">
+                <li key={item} className="reveal flex items-start gap-3 rounded-2xl bg-white p-4 shadow-card">
                   <span className="mt-0.5 flex h-5 w-5 flex-none items-center justify-center rounded-full bg-accent-50">
                     <svg viewBox="0 0 12 12" className="h-3 w-3 text-accent-600" fill="none">
                       <path d="M2 6.5 L4.8 9 L10 3" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />

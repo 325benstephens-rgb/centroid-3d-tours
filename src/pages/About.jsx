@@ -13,22 +13,22 @@ export default function About() {
 
       <section className="bg-paper py-16 sm:py-24">
         <Container className="max-w-3xl">
-          <div className="flex items-center gap-4">
+          <div className="reveal flex items-center gap-4">
             <img src="/icons/logo.jpg" alt="" className="h-14 w-14 flex-none rounded-2xl object-contain" />
             <SectionHeading heading={ABOUT_CONTENT.heading} />
           </div>
 
-          <p className="mt-8 text-lg font-medium leading-relaxed text-charcoal-900">{ABOUT_CONTENT.intro}</p>
+          <p className="reveal mt-8 text-lg font-medium leading-relaxed text-charcoal-900">{ABOUT_CONTENT.intro}</p>
 
           <div className="mt-6 space-y-5">
             {ABOUT_CONTENT.paragraphs.map((paragraph, i) => (
-              <p key={i} className="text-base leading-relaxed text-charcoal-700/80">
+              <p key={i} className="reveal text-base leading-relaxed text-charcoal-700/80">
                 {paragraph}
               </p>
             ))}
           </div>
 
-          <p className="mt-8 border-t border-charcoal-900/10 pt-6 text-sm font-semibold uppercase tracking-wide text-charcoal-600">
+          <p className="reveal mt-8 border-t border-charcoal-900/10 pt-6 text-sm font-semibold uppercase tracking-wide text-charcoal-600">
             {ABOUT_CONTENT.closing}
           </p>
         </Container>

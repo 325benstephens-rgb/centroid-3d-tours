@@ -54,7 +54,7 @@ export default function Contact() {
 
       <section className="bg-paper py-16 sm:py-24">
         <Container className="grid gap-12 lg:grid-cols-[1fr_1.2fr]">
-          <div>
+          <div className="reveal">
             <SectionHeading heading={CONTACT_CONTENT.heading} subheading={CONTACT_CONTENT.subheading} />
 
             <div className="mt-10 space-y-5 text-sm">

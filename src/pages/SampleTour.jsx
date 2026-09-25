@@ -36,7 +36,7 @@ export default function SampleTour() {
         </div>
 
         <Container>
-          <div className="mx-auto mt-10 max-w-2xl rounded-3xl bg-white p-8 ring-1 ring-charcoal-900/10">
+          <div className="reveal mx-auto mt-10 max-w-2xl rounded-3xl bg-white p-8 ring-1 ring-charcoal-900/10">
             <h3 className="font-display text-xl font-semibold text-charcoal-900">
               What you'll see in a full tour
             </h3>
