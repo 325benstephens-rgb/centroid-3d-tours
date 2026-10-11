@@ -1,6 +1,7 @@
 import SEO from '../components/SEO.jsx'
 import Container from '../components/Container.jsx'
-import { SAMPLE_TOUR_CONTENT, RICOH360_TOUR_URL } from '../content/sampleTour.js'
+import TourMedia from '../components/TourMedia.jsx'
+import { SAMPLE_TOUR_CONTENT } from '../content/sampleTour.js'
 
 export default function SampleTour() {
   return (
@@ -13,26 +14,20 @@ export default function SampleTour() {
       <section className="bg-paper py-16 sm:py-20">
         {/* Intentionally full-bleed: no Container wrapper, so this spans the entire viewport width. */}
         <div className="relative aspect-video w-full overflow-hidden bg-charcoal-900">
-          {RICOH360_TOUR_URL ? (
-            // Set in src/content/sampleTour.js once a tour is published with RICOH360 Tours.
-            <iframe
-              src={RICOH360_TOUR_URL}
-              title="Centroid 3D Tours — sample 360° walkthrough"
-              allow="xr-spatial-tracking; gyroscope; accelerometer"
-              allowFullScreen
-              className="h-full w-full"
-            />
-          ) : (
-            <div className="absolute inset-0 flex flex-col items-center justify-center gap-3 px-6 text-center">
-              <div className="flex h-14 w-14 items-center justify-center rounded-full border-2 border-dashed border-accent-400">
-                <span className="h-2.5 w-2.5 rounded-full bg-accent-400" />
+          <TourMedia
+            controls
+            placeholder={
+              <div className="absolute inset-0 flex flex-col items-center justify-center gap-3 px-6 text-center">
+                <div className="flex h-14 w-14 items-center justify-center rounded-full border-2 border-dashed border-accent-400">
+                  <span className="h-2.5 w-2.5 rounded-full bg-accent-400" />
+                </div>
+                <p className="font-display text-lg font-semibold text-white">Sample 360° tour coming soon</p>
+                <p className="max-w-sm text-sm text-charcoal-200">
+                  This space will hold a live, embedded walkthrough of an actual property.
+                </p>
               </div>
-              <p className="font-display text-lg font-semibold text-white">Sample 360° tour coming soon</p>
-              <p className="max-w-sm text-sm text-charcoal-200">
-                This space will hold a live, embedded RICOH360 Tours walkthrough of an actual property.
-              </p>
-            </div>
-          )}
+            }
+          />
         </div>
 
         <Container>

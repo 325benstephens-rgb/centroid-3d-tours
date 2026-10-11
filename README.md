@@ -80,15 +80,17 @@ formatted for readability while the `Href` stays a valid link.
 
 ## Embedding a real sample tour
 
-The Sample Tour page is already wired up to accept a tour published with
-RICOH360 Tours. Once you've published one:
+The sample tour (Home page hero + Sample Tour page) is set in
+`src/content/sampleTour.js`:
 
-1. In RICOH360 Tours, open the tour and go to **Share**.
-2. Copy the embed/share link.
-3. Paste it into `RICOH360_TOUR_URL` in `src/content/sampleTour.js`.
+- `TOUR_EMBED_URL` — an interactive tour shown in an iframe. For Matterport,
+  the model must be Public or Unlisted, and the URL looks like
+  `https://my.matterport.com/show/?m=MODEL_ID&play=1&qs=1`.
+- `SAMPLE_TOUR_VIDEO` — a walkthrough video in `public/` (currently
+  `/videos/sample-tour.mp4`), shown when there's no embed URL.
 
-The page automatically swaps the "coming soon" placeholder for a live
-embedded tour — no component/JSX editing required.
+The embed takes priority over the video; with both set to `null`, a "coming
+soon" placeholder shows instead — no component/JSX editing required.
 
 ## Wiring up the contact form
 

@@ -4,12 +4,12 @@ import Container from '../components/Container.jsx'
 import Button from '../components/Button.jsx'
 import SectionHeading from '../components/SectionHeading.jsx'
 import StatCard from '../components/StatCard.jsx'
+import TourMedia from '../components/TourMedia.jsx'
 import { ICONS } from '../components/icons.jsx'
 import { gsap, useGSAP } from '../lib/gsap.js'
 import { HERO, HOW_IT_WORKS, HOME_CTA_BANNER, SAMPLE_TOUR_NOTE } from '../content/home.js'
 import { STATS } from '../content/stats.js'
 import { SOCIAL_PROOF_NOTE } from '../content/site.js'
-import { RICOH360_TOUR_URL } from '../content/sampleTour.js'
 
 export default function Home() {
   const heroRef = useRef(null)
@@ -62,22 +62,15 @@ export default function Home() {
               Sample Tour <span className="font-normal text-charcoal-400">— {SAMPLE_TOUR_NOTE}</span>
             </p>
             <div className="relative aspect-video w-full overflow-hidden rounded-[32px] bg-charcoal-900">
-              {RICOH360_TOUR_URL ? (
-                // Set in src/content/sampleTour.js once a tour is published with RICOH360 Tours.
-                <iframe
-                  src={RICOH360_TOUR_URL}
-                  title="Centroid 3D Tours — sample 360° walkthrough"
-                  allow="xr-spatial-tracking; gyroscope; accelerometer"
-                  allowFullScreen
-                  className="h-full w-full"
-                />
-              ) : (
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="flex h-14 w-14 items-center justify-center rounded-full border-2 border-dashed border-accent-400">
-                    <span className="h-2.5 w-2.5 rounded-full bg-accent-400" />
+              <TourMedia
+                placeholder={
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <div className="flex h-14 w-14 items-center justify-center rounded-full border-2 border-dashed border-accent-400">
+                      <span className="h-2.5 w-2.5 rounded-full bg-accent-400" />
+                    </div>
                   </div>
-                </div>
-              )}
+                }
+              />
             </div>
           </div>
         </Container>

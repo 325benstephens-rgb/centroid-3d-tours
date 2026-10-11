@@ -8,17 +8,15 @@ export const SAMPLE_TOUR_CONTENT = {
 }
 
 // ---------------------------------------------------------------------------
-// EMBEDDING A REAL TOUR FROM RICOH360 TOURS
+// SAMPLE TOUR MEDIA (Home page hero + /sample-tour page)
 //
-// This site is set up to embed a tour published with RICOH360 Tours (the
-// official Ricoh Theta tour-hosting software). Once you've published a tour:
+// TOUR_EMBED_URL: an interactive 3D tour shown in an iframe. Takes priority
+// over the video when set. For Matterport, the model must be Public or
+// Unlisted (Private models won't load for visitors), and the URL format is:
+//   https://my.matterport.com/show/?m=MODEL_ID&play=1&qs=1
 //
-//   1. In RICOH360 Tours, open the tour and go to Share.
-//   2. Copy the embed/share link (it will look like
-//      https://tours.ricoh360.com/s/XXXXXXXXXXXX or similar).
-//   3. Paste that link below as RICOH360_TOUR_URL.
-//
-// The Sample Tour page will automatically swap the "coming soon" placeholder
-// for a live embedded tour as soon as this is set to a real URL.
+// SAMPLE_TOUR_VIDEO: a walkthrough video in /public, shown when there's no
+// embed URL. Leave both null to show the "coming soon" placeholder.
 // ---------------------------------------------------------------------------
-export const RICOH360_TOUR_URL = null
+export const TOUR_EMBED_URL = null
+export const SAMPLE_TOUR_VIDEO = '/videos/sample-tour.mp4'
