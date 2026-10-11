@@ -4,20 +4,12 @@ import Container from '../components/Container.jsx'
 import Button from '../components/Button.jsx'
 import SectionHeading from '../components/SectionHeading.jsx'
 import StatCard from '../components/StatCard.jsx'
-import Marquee from '../components/Marquee.jsx'
 import { ICONS } from '../components/icons.jsx'
 import { gsap, useGSAP } from '../lib/gsap.js'
 import { HERO, HOW_IT_WORKS, HOME_CTA_BANNER, SAMPLE_TOUR_NOTE } from '../content/home.js'
 import { STATS } from '../content/stats.js'
 import { SOCIAL_PROOF_NOTE } from '../content/site.js'
 import { RICOH360_TOUR_URL } from '../content/sampleTour.js'
-
-const MARQUEE_ITEMS = [
-  'ST. LOUIS LANDLORDS',
-  'INSURANCE-READY DOCUMENTATION',
-  'LISTING-READY 360° TOURS',
-  'FLAT RATE · NO CONTRACTS',
-]
 
 export default function Home() {
   const heroRef = useRef(null)
@@ -91,14 +83,8 @@ export default function Home() {
         </Container>
       </section>
 
-      {/* Kinetic typography ribbon */}
-      <Marquee
-        items={MARQUEE_ITEMS}
-        className="border-y border-charcoal-900/10 bg-charcoal-900 py-4 text-sm font-bold uppercase tracking-wide text-white sm:py-5 sm:text-base"
-      />
-
       {/* How it works */}
-      <section className="bg-white py-16 sm:py-24">
+      <section className="bg-white pb-16 sm:pb-24">
         <Container>
           <SectionHeading eyebrow="How it works" heading="One shoot, delivered as a tour and a paper trail" />
 
