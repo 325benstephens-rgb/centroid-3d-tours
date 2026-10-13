@@ -37,6 +37,8 @@
 
   .h-xl { font-size: clamp(44px, 6.4vw, 88px); line-height: 1.04; font-weight: 600; letter-spacing: -.015em; margin: 0; }
   .h-lg { font-size: clamp(40px, 5.6vw, 64px); line-height: 1.06; font-weight: 600; letter-spacing: -.009em; margin: 0; }
+  .how-h { font-size: clamp(28px, calc((100vw - 44px) / 20), 50px); white-space: nowrap; }
+  .br-narrow { display: none; }
   .h-md { font-size: clamp(28px, 3.4vw, 40px); line-height: 1.1; font-weight: 600; letter-spacing: 0; margin: 0; }
   .eyebrow { font-size: clamp(19px, 2vw, 24px); font-weight: 600; margin: 0 0 8px; color: var(--coral); letter-spacing: .009em; }
   .lead { font-size: clamp(19px, 2.1vw, 28px); line-height: 1.14; font-weight: 400; letter-spacing: .007em; margin: 14px 0 0; }
@@ -146,10 +148,23 @@
   .tile.wide p { margin: 0; }
   .tile.wide .art { margin: 0; height: 100%; place-items: center; }
   .tile.wide .art img { max-height: 400px; }
-  .doclist { list-style: none; padding: 0; margin: 26px auto 0; max-width: 300px; text-align: left; }
-  .doclist li { display: flex; justify-content: space-between; gap: 10px; padding: 12px 0; border-bottom: 1px solid #d2d2d7; font-size: 15px; }
-  .doclist li span:last-child { color: var(--gray); }
-  .doclist li b { font-weight: 600; }
+  /* condition record: a compact report card */
+  .report { margin: 26px auto 0; width: 100%; max-width: 360px; text-align: left; background: #fff; border-radius: 18px; padding: 16px 18px 14px;
+    box-shadow: 0 1px 2px rgba(0,0,0,.04), 0 18px 40px -22px rgba(0,0,0,.25); }
+  .report-head { display: flex; flex-direction: column; gap: 2px; padding-bottom: 12px; border-bottom: 1px solid #e8e8ed; position: relative; }
+  .report-head b { font-size: 15px; font-weight: 600; color: var(--graphite); padding-right: 72px; }
+  .report-head span:last-child { font-size: 12px; color: var(--gray); }
+  .report-tag { position: absolute; right: 0; top: 0; font-size: 11px; font-weight: 600; color: var(--gray); background: #f5f5f7; border-radius: 980px; padding: 2px 9px; }
+  .doclist { list-style: none; padding: 0; margin: 0; }
+  .doclist li { display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 10px 0; border-bottom: 1px solid #f0f0f3; font-size: 14px; }
+  .doclist li div { display: flex; flex-direction: column; min-width: 0; }
+  .doclist li b { font-weight: 600; color: var(--graphite); }
+  .doclist li small { font-size: 12px; color: var(--gray); line-height: 1.35; }
+  .doclist li > span { flex: none; font-size: 13px; color: #424245; }
+  .doclist li.flag { background: linear-gradient(90deg, rgba(255,159,10,.08), rgba(255,159,10,0)); margin: 0 -18px; padding-left: 18px; padding-right: 18px; }
+  .report-foot { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 4px 10px; padding-top: 11px; font-size: 12px; color: var(--gray); }
+  .report-foot span { white-space: nowrap; }
+  .report-foot span:first-child { color: #248a3d; font-weight: 600; }
   .dot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: #30d158; margin-right: 8px; }
   .dot.warn { background: #ff9f0a; }
 
@@ -256,6 +271,8 @@
     .spin-pin { height: clamp(620px, calc(100svh - 48px), 860px); }
     .cam-nav { left: 50%; transform: translateX(-50%); bottom: 20px; }
     .br-wide { display: none; }
+    .how-h { font-size: clamp(26px, calc((100vw - 44px) / 11), 44px); white-space: normal; }
+    .br-narrow { display: inline; }
     .cam-arrow { display: none; }
     .cam-tabs button { font-size: 12px; padding: 6px 11px; }
     .cam-tabs button::after { left: 11px; right: 11px; }
@@ -354,13 +371,20 @@
         <article class="tile gray fade">
           <h3>Condition record</h3>
           <p>Dated, room-by-room notes, personally reviewed before they reach you.</p>
-          <ul class="doclist" aria-label="Example condition record">
-            <li><b>Living room</b><span><i class="dot"></i>Good</span></li>
-            <li><b>Kitchen</b><span><i class="dot"></i>Good</span></li>
-            <li><b>Bath 1</b><span><i class="dot warn"></i>Noted</span></li>
-            <li><b>Bedroom 2</b><span><i class="dot"></i>Good</span></li>
-            <li><b>Captured</b><span>Dated &amp; timestamped</span></li>
-          </ul>
+          <div class="report" aria-label="Example condition record">
+            <div class="report-head">
+              <span class="report-tag">Example</span>
+              <b>Sample property · Unit 2B</b>
+              <span>Move-in record · Oct 13, 2026 · 9:42 AM</span>
+            </div>
+            <ul class="doclist">
+              <li><div><b>Living room</b><small>Walls, floors, windows · 12 photos</small></div><span><i class="dot"></i>Good</span></li>
+              <li><div><b>Kitchen</b><small>Cabinets, counters, appliances · 14 photos</small></div><span><i class="dot"></i>Good</span></li>
+              <li class="flag"><div><b>Bath 1</b><small>Hairline crack in floor tile by tub, pinned in tour</small></div><span><i class="dot warn"></i>Noted</span></li>
+              <li><div><b>Bedroom 2</b><small>Carpet, closet, blinds · 9 photos</small></div><span><i class="dot"></i>Good</span></li>
+            </ul>
+            <div class="report-foot"><span>✓ Reviewed by Ben S.</span><span>4 rooms · 43 photos · 1 flag</span></div>
+          </div>
         </article>
         <article class="tile wide gray fade">
           <div>
@@ -383,7 +407,7 @@
   <!-- HOW IT WORKS -->
   <section class="grayband section" id="how" aria-labelledby="how-h">
     <div class="wrap center">
-      <h2 class="h-lg fade" id="how-h">Book it. We shoot it.<br>You get it.</h2>
+      <h2 class="h-lg fade how-h" id="how-h">Booked this week.<br class="br-narrow"> Delivered in 48 hours.</h2>
       <div class="steps">
         <div class="step fade" style="text-align:left"><div class="ico-row"><small>Step 1</small></div><h3>Book your shoot</h3><p>Tell us the property and roughly how many bedrooms. We'll get you on the schedule fast.</p></div>
         <div class="step fade" style="text-align:left"><div class="ico-row"><small>Step 2</small></div><h3>We capture everything</h3><p>A full 360° walkthrough on a Ricoh Theta X, plus room-by-room condition notes as we go.</p></div>
