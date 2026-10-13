@@ -1,0 +1,545 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Centroid 3D Tours — 360° Tours &amp; Condition Documentation</title>
+<meta name="description" content="360° property tours and dated, room-by-room condition documentation for St. Louis landlords. Shot on RICOH THETA X. From $75.">
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#000000">
+<link rel="icon" href="img/logo-dots.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --black: #000;
+    --graphite: #1d1d1f;
+    --gray: #86868b;
+    --silver: #a1a1a6;
+    --light: #f5f5f7;
+    --white: #fff;
+    --coral: #F2595B;
+    --link: #2997ff;      /* links on dark */
+    --link-dark: #0066cc; /* links on light */
+    --font: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Inter", "Helvetica Neue", Arial, sans-serif;
+    --max: 980px;
+  }
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body { margin: 0; background: var(--black); color: var(--light); font: 400 17px/1.47 var(--font); letter-spacing: -.022em; -webkit-font-smoothing: antialiased; }
+  img { display: block; max-width: 100%; }
+  a { color: inherit; text-decoration: none; }
+  :focus-visible { outline: 2px solid var(--link); outline-offset: 3px; border-radius: 4px; }
+  main { overflow-x: clip; }
+  .wrap { width: min(var(--max), 100% - 44px); margin-inline: auto; }
+  .center { text-align: center; }
+
+  .h-xl { font-size: clamp(44px, 6.4vw, 88px); line-height: 1.04; font-weight: 600; letter-spacing: -.015em; margin: 0; }
+  .h-lg { font-size: clamp(40px, 5.6vw, 64px); line-height: 1.06; font-weight: 600; letter-spacing: -.009em; margin: 0; }
+  .h-md { font-size: clamp(28px, 3.4vw, 40px); line-height: 1.1; font-weight: 600; letter-spacing: 0; margin: 0; }
+  .eyebrow { font-size: clamp(19px, 2vw, 24px); font-weight: 600; margin: 0 0 8px; color: var(--coral); letter-spacing: .009em; }
+  .lead { font-size: clamp(19px, 2.1vw, 28px); line-height: 1.14; font-weight: 400; letter-spacing: .007em; margin: 14px 0 0; }
+  .muted { color: var(--gray); }
+  .gradient-text { background: linear-gradient(180deg, #fff 30%, #8e8e93 100%); -webkit-background-clip: text; background-clip: text; color: transparent; font-variant-numeric: tabular-nums; }
+  .links { display: flex; justify-content: center; gap: 30px; flex-wrap: wrap; margin-top: 22px; font-size: clamp(17px, 1.6vw, 21px); }
+  .links a { color: var(--link); }
+  .links a::after { content: " ›"; }
+  .links a:hover { text-decoration: underline; }
+  .light .links a { color: var(--link-dark); }
+  .btn { display: inline-block; background: var(--coral); color: #fff; border-radius: 980px; padding: 11px 22px; font-size: 17px; font-weight: 400;
+    transition: background-color .25s, box-shadow .35s, transform .35s cubic-bezier(.2,.8,.2,1); }
+  .btn:hover { background: #ff6d6f; color: #fff; text-decoration: none; }
+  .links { align-items: center; }
+  .links a.btn, .light .links a.btn { color: #fff; }
+  .links a.btn::after { content: none; }
+  .links a.btn:hover { text-decoration: none; }
+  footer .btn { padding: 2px 12px; font-size: 12px; }
+  /* button motion: lift + glow on hover, a light sweep across, press-in on click */
+  .btn { position: relative; overflow: hidden; isolation: isolate; transform: translate(var(--tx, 0px), var(--ty, 0px)) scale(var(--s, 1)); }
+  .btn::before { content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none; transform: translateX(-130%);
+    background: linear-gradient(110deg, transparent 30%, rgba(255,255,255,.45) 50%, transparent 70%); }
+  @media (hover: hover) and (prefers-reduced-motion: no-preference) {
+    .btn:hover { --s: 1.04; box-shadow: 0 10px 28px -8px rgba(242,89,91,.65); }
+    .btn:hover::before { transform: translateX(130%); transition: transform .75s ease; }
+  }
+  .btn:active { --s: .96; transition-duration: .1s; }
+  @media (prefers-reduced-motion: no-preference) { .hero .btn::before { animation: btn-sheen 1.2s ease 1.9s 1; } }
+  @keyframes btn-sheen { from { transform: translateX(-130%); } to { transform: translateX(130%); } }
+
+  /* ---------- global nav ---------- */
+  .gnav { position: sticky; top: 0; z-index: 50; height: 48px; background: rgba(0,0,0,.72); -webkit-backdrop-filter: saturate(180%) blur(20px); backdrop-filter: saturate(180%) blur(20px); border-bottom: 1px solid rgba(255,255,255,.08); }
+  .gnav .wrap { height: 100%; display: flex; align-items: center; justify-content: space-between; font-size: 12px; letter-spacing: -.01em; }
+  .gnav .logo { display: flex; align-items: center; gap: 10px; color: #f5f5f7; font-weight: 600; font-size: 14px; }
+  .gnav .logo svg { width: 32px; height: 32px; overflow: visible; }
+  .gnav nav { display: flex; gap: clamp(14px, 3vw, 34px); color: #d2d2d7; }
+  .gnav nav a:hover { color: #fff; }
+  .gnav .btn { padding: 4px 12px; font-size: 12px; }
+
+  /* sub-nav (product page style) */
+
+  /* ---------- hero ---------- */
+  .hero { padding: 36px 0 0; text-align: center; overflow: hidden; }
+  .hero-tour { position: relative; z-index: 2; flex: none; height: 100%; text-align: left;
+    width: min(calc(var(--sh) * 16 / 9), calc(100vw - var(--sh) * 347 / 914 - var(--gap) - var(--pad))); }
+  .hero-tour-frame { display: block; height: 100%; border-radius: 18px; overflow: hidden; background: #111;
+    box-shadow: 0 0 0 1px rgba(255,255,255,.08), 0 30px 60px -20px rgba(0,0,0,.9); transition: transform .4s ease, box-shadow .4s ease; }
+  .hero-tour-frame video { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .hero-tour:hover .hero-tour-frame { transform: scale(1.03); box-shadow: 0 0 0 1px rgba(255,255,255,.18), 0 30px 60px -20px rgba(0,0,0,.9); }
+  .hero-tour-cap { position: absolute; left: 14px; bottom: 14px; display: flex; align-items: center; gap: 8px; padding: 6px 13px 6px 11px; border-radius: 980px;
+    background: rgba(0,0,0,.5); -webkit-backdrop-filter: blur(14px) saturate(180%); backdrop-filter: blur(14px) saturate(180%); font-size: 13px; color: #f5f5f7; }
+  .hero-tour-cap i { width: 7px; height: 7px; border-radius: 50%; background: var(--coral); box-shadow: 0 0 0 4px rgba(242,89,91,.2); }
+  .hero .stage { --sh: clamp(230px, calc(100svh - 495px), 620px); --gap: clamp(28px, 3vw, 48px); --pad: 80px;
+    position: relative; height: var(--sh); margin-top: 22px; margin-bottom: 120px; display: flex; justify-content: center; gap: var(--gap); pointer-events: none; }
+  .hero .stage .hero-tour { pointer-events: auto; }
+  .hero .glow { position: absolute; left: 50%; top: 52%; width: 70vmin; height: 70vmin; transform: translate(-50%, -50%); border-radius: 50%;
+    background: radial-gradient(circle, rgba(140,150,165,.32) 0%, rgba(60,64,72,.12) 38%, rgba(0,0,0,0) 68%); filter: blur(6px); }
+  .cam { position: relative; flex: none; height: 100%; width: calc(var(--sh) * 347 / 914); }
+  .cam img { height: 100%; width: auto; filter: drop-shadow(0 40px 60px rgba(0,0,0,.9)); }
+  .cam .sheen { position: absolute; inset: 0; pointer-events: none;
+    -webkit-mask: var(--m) center / contain no-repeat; mask: var(--m) center / contain no-repeat;
+    background: linear-gradient(105deg, transparent 30%, rgba(255,255,255,.42) 48%, rgba(255,255,255,.06) 56%, transparent 70%);
+    background-size: 250% 100%; background-position: 130% 0; mix-blend-mode: screen; }
+  .reflection { position: absolute; left: 50%; bottom: -26%; height: 30%; transform: translateX(-50%) scaleY(-1); opacity: .16;
+    -webkit-mask-image: linear-gradient(to top, #000, transparent 70%); mask-image: linear-gradient(to top, #000, transparent 70%); }
+  .reflection img { height: 333%; width: auto; }
+
+  /* ---------- pinned rotation ---------- */
+  .spin { position: relative; height: 420vh; }
+  .spin-pin { position: sticky; top: 48px; height: calc(100vh - 48px); display: grid; grid-template-columns: 1fr 1fr; align-items: center; width: min(1100px, 100% - 44px); margin: 0 auto; }
+  .spin-stage { position: relative; height: 76%; perspective: 1400px; }
+  .spin-stage .frame { position: absolute; inset: 0; display: flex; justify-content: center; align-items: center; opacity: 0; }
+  .spin-stage .frame:first-child { opacity: 1; }
+  .spin-stage img { height: 100%; max-height: 640px; width: auto; object-fit: contain; filter: drop-shadow(0 30px 50px rgba(0,0,0,.85)); }
+  .spin-copy { position: relative; height: 300px; }
+  .spin-copy .msg { position: absolute; inset: 0; display: flex; flex-direction: column; justify-content: center; opacity: 0; }
+  .spin-copy .msg:first-child { opacity: 1; }
+  .spin-copy h3 { font-size: clamp(32px, 4vw, 56px); line-height: 1.07; font-weight: 600; margin: 0 0 14px; }
+  .spin-copy p { margin: 0; color: var(--gray); font-size: clamp(17px, 1.6vw, 21px); max-width: 26ch; }
+  .spin-copy p b { color: var(--light); font-weight: 600; }
+  .ticks { position: absolute; left: 0; bottom: -10px; display: flex; gap: 8px; }
+  .ticks i { width: 8px; height: 8px; border-radius: 50%; background: #424245; transition: background-color .3s, width .3s; }
+  .ticks i.on { background: var(--light); width: 24px; border-radius: 8px; }
+
+  /* ---------- light section ---------- */
+  .light { background: var(--white); color: var(--graphite); }
+  .grayband { background: var(--light); color: var(--graphite); }
+  .section { padding: clamp(80px, 12vw, 140px) 0; }
+  .tiles { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 60px; }
+  .tile { position: relative; border-radius: 28px; overflow: hidden; padding: 44px 40px 0; min-height: 560px; display: flex; flex-direction: column; text-align: center; }
+  .tile.dark { background: #000; color: var(--light); }
+  .tile.gray { background: var(--light); }
+  .tile h3 { font-size: clamp(28px, 3vw, 40px); line-height: 1.1; font-weight: 600; margin: 0 0 10px; }
+  .tile p { margin: 0 auto; max-width: 30ch; color: var(--gray); font-size: 17px; }
+  .tile .art { flex: 1; display: grid; place-items: end center; margin-top: 30px; }
+  .tile .art img { max-height: 340px; width: auto; }
+  .tile.wide { grid-column: 1 / -1; min-height: 480px; display: grid; grid-template-columns: 1fr 1fr; align-items: center; text-align: left; padding: 0 60px; }
+  .tile.wide p { margin: 0; }
+  .tile.wide .art { margin: 0; height: 100%; place-items: center; }
+  .tile.wide .art img { max-height: 400px; }
+  .doclist { list-style: none; padding: 0; margin: 26px auto 0; max-width: 300px; text-align: left; }
+  .doclist li { display: flex; justify-content: space-between; gap: 10px; padding: 12px 0; border-bottom: 1px solid #d2d2d7; font-size: 15px; }
+  .doclist li span:last-child { color: var(--gray); }
+  .doclist li b { font-weight: 600; }
+  .dot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: #30d158; margin-right: 8px; }
+  .dot.warn { background: #ff9f0a; }
+
+  /* ---------- steps ---------- */
+  .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 60px; }
+  .step { background: var(--white); border-radius: 22px; padding: 34px 30px 36px; }
+  .step small { color: var(--coral); font-weight: 600; font-size: 14px; }
+  .step h3 { margin: 4px 0 8px; font-size: 24px; font-weight: 600; letter-spacing: .009em; }
+  .step p { margin: 0; color: #6e6e73; font-size: 17px; }
+
+  /* ---------- stats ---------- */
+  .stats { display: grid; grid-template-columns: repeat(2, 1fr); gap: 70px 40px; margin-top: 80px; text-align: left; }
+  .stat .num { font-size: clamp(64px, 9vw, 112px); line-height: 1; font-weight: 600; letter-spacing: -.03em;
+    background: linear-gradient(90deg, #f5f5f7 0%, #a1a1a6 100%); -webkit-background-clip: text; background-clip: text; color: transparent; font-variant-numeric: tabular-nums; }
+  .stat .num.coral { background: linear-gradient(90deg, #ff8a7a, #F2595B); -webkit-background-clip: text; background-clip: text; }
+  .stat h3 { margin: 12px 0 6px; font-size: 21px; font-weight: 600; }
+  .stat p { margin: 0; color: var(--gray); font-size: 17px; max-width: 38ch; }
+  .stat cite { display: block; margin-top: 8px; font-style: normal; font-size: 12px; color: #6e6e73; }
+
+  /* ---------- pricing ---------- */
+  .compare { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; margin-top: 70px; text-align: center; }
+  .plan { padding: 0 24px; }
+  .plan + .plan { border-left: 1px solid #d2d2d7; }
+  .plan h3 { margin: 0; font-size: 24px; font-weight: 600; }
+  .plan .price { font-size: 48px; font-weight: 600; margin: 10px 0 2px; letter-spacing: -.01em; font-variant-numeric: tabular-nums; }
+  .plan .per { color: var(--gray); font-size: 14px; }
+  .plan p { color: #6e6e73; font-size: 15px; margin: 16px auto 22px; max-width: 24ch; min-height: 3em; }
+  .incl { margin: 80px auto 0; max-width: 860px; border-top: 1px solid #d2d2d7; }
+  .incl h3 { font-size: 21px; font-weight: 600; margin: 28px 0 14px; text-align: center; }
+  .incl ul { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px 30px; font-size: 17px; }
+  .incl li::before { content: "✓"; color: var(--coral); font-weight: 700; margin-right: 10px; }
+  .fine { text-align: center; color: var(--gray); font-size: 12px; margin-top: 30px; }
+
+  /* ---------- step + plan icons ---------- */
+  .ico-row { display: flex; align-items: center; gap: 10px; margin-bottom: 16px; }
+  .ico-row small { font-size: 15px; }
+  .ico-row svg { width: 30px; height: 30px; color: var(--coral); flex: none; }
+  .plan-ico { display: block; width: auto; height: 120px; max-width: 150px; object-fit: contain; margin: 0 auto 18px; mix-blend-mode: multiply; transition: transform .5s cubic-bezier(.2,.8,.2,1); }
+  .plan:hover .plan-ico { transform: translateY(-6px) scale(1.04); }
+
+  /* ---------- listing example ---------- */
+  .listing { background: var(--white); border-radius: 18px; padding: 24px 24px 22px; max-width: 360px; text-align: left; box-shadow: 0 20px 50px -24px rgba(0,0,0,.25); position: relative; }
+  .listing-tag { position: absolute; top: 16px; right: 16px; font-size: 11px; font-weight: 600; color: var(--gray); background: var(--light); border-radius: 980px; padding: 3px 9px; }
+  .tile .listing-title { margin: 0 0 4px; padding-right: 72px; font-size: 19px; font-weight: 600; color: var(--graphite); max-width: 22ch; }
+  .tile .listing-meta { margin: 0 0 12px; font-size: 13px; color: var(--gray); }
+  .tile .listing-body { margin: 0; font-size: 15px; line-height: 1.5; color: #424245; max-width: none; }
+
+  /* ---------- sample tour video ---------- */
+  .tour-wrap { width: min(1180px, 100% - 44px); margin: 56px auto 0; }
+  .tour-frame { position: relative; aspect-ratio: 16 / 9; border-radius: 28px; overflow: hidden; background: #111; box-shadow: 0 40px 100px -40px rgba(140,150,165,.35); will-change: transform; }
+  .tour-frame video { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .pp { position: absolute; right: 18px; bottom: 18px; width: 40px; height: 40px; border-radius: 50%; border: 0; cursor: pointer; display: grid; place-items: center;
+    background: rgba(40,40,42,.72); color: #fff; -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px); transition: background-color .2s, transform .3s cubic-bezier(.2,.8,.2,1); }
+  .pp:hover { background: rgba(70,70,72,.85); transform: scale(1.1); }
+  .pp:active { transform: scale(.92); transition-duration: .1s; }
+  .pp svg { width: 16px; height: 16px; }
+  .see-row { list-style: none; padding: 0; margin: 44px 0 0; display: grid; grid-template-columns: repeat(4, 1fr); gap: 26px; }
+  .see-row b { display: block; font-size: 17px; font-weight: 600; color: var(--light); margin-bottom: 4px; }
+  .see-row span { color: var(--gray); font-size: 15px; }
+
+  /* ---------- sample + battery ---------- */
+  .sample { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center; }
+  .sample .art img { width: 100%; max-width: 560px; margin: 0 auto; filter: drop-shadow(0 30px 50px rgba(0,0,0,.9)); }
+  .pill-tag { display: inline-block; font-size: 12px; font-weight: 600; color: #000; background: var(--light); border-radius: 980px; padding: 4px 12px; margin-bottom: 18px; }
+  .seelist { list-style: none; padding: 0; margin: 26px 0 0; }
+  .seelist li { padding: 12px 0; border-top: 1px solid #333336; color: #d2d2d7; font-size: 17px; }
+
+  /* ---------- about ---------- */
+  .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; margin-top: 50px; }
+  .about-grid p { margin: 0 0 18px; color: #424245; font-size: 19px; line-height: 1.42; }
+
+  /* ---------- cta ---------- */
+  .cta { padding: clamp(90px, 13vw, 160px) 0; text-align: center; position: relative; overflow: hidden; }
+  .cta .cam-row { display: flex; justify-content: center; align-items: flex-end; gap: clamp(10px, 3vw, 40px); margin-top: 70px; height: clamp(220px, 34vw, 420px); }
+  .cta .cam-row img { height: 100%; width: auto; filter: drop-shadow(0 30px 40px rgba(0,0,0,.9)); }
+  .cta .cam-row img:nth-child(2) { height: 112%; }
+
+  /* ---------- footer ---------- */
+  footer { background: var(--light); color: #6e6e73; font-size: 12px; padding: 20px 0 30px; }
+  footer .note { border-bottom: 1px solid #d2d2d7; padding-bottom: 14px; line-height: 1.5; }
+  footer .cols { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; padding: 20px 0; }
+  footer h4 { margin: 0 0 8px; color: var(--graphite); font-size: 12px; font-weight: 600; }
+  footer ul { list-style: none; margin: 0; padding: 0; line-height: 2; }
+  footer a:hover { text-decoration: underline; color: var(--graphite); }
+  footer .legal { border-top: 1px solid #d2d2d7; padding-top: 14px; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px; }
+
+  /* ---------- reveal ---------- */
+  .fade { opacity: 0; transform: translateY(40px); }
+
+  @media (max-width: 834px) {
+    .gnav nav { display: none; }
+    .spin-pin { grid-template-columns: 1fr; grid-template-rows: 54% 46%; }
+    .spin-stage { height: 92%; align-self: center; }
+    .spin-copy .msg { padding-top: 10px; }
+    .ticks { left: 50%; transform: translateX(-50%); bottom: 24px; }
+    .hero .stage { --sh: clamp(240px, calc(100svh - 500px), 440px); --gap: 14px; --pad: 36px; }
+    .hero-tour-frame { border-radius: 14px; }
+    .hero-tour-cap { left: 10px; bottom: 10px; font-size: 12px; padding: 5px 11px 5px 9px; }
+    .spin-copy { height: 100%; text-align: center; }
+    .spin-copy .msg { align-items: center; justify-content: flex-start; }
+    .tiles, .steps, .stats, .sample, .about-grid { grid-template-columns: 1fr; }
+    .see-row { grid-template-columns: 1fr 1fr; }
+    .tour-frame { border-radius: 18px; }
+    .tile.wide { grid-template-columns: 1fr; padding: 44px 30px 30px; text-align: center; }
+    .tile { min-height: 480px; }
+    .compare { grid-template-columns: 1fr; gap: 50px; }
+    .plan + .plan { border-left: 0; border-top: 1px solid #d2d2d7; padding-top: 50px; }
+    .incl ul { grid-template-columns: 1fr; }
+    footer .cols { grid-template-columns: 1fr 1fr; }
+  }
+  @media (prefers-reduced-motion: reduce) { .fade { opacity: 1; transform: none; } }
+</style>
+<script>window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };</script>
+<script defer src="/_vercel/insights/script.js"></script>
+</head>
+<body>
+
+<header class="gnav">
+  <div class="wrap">
+    <a class="logo" href="#top"><svg class="logo-dots" viewBox="-50 -50 100 100" aria-hidden="true"><g transform="scale(.78)" fill="#FF5A5C"><circle cx="0" cy="-44.8" r="9.5" data-z="-7.9"/><circle cx="0" cy="-25.3" r="9.5" data-z="35.1"/><circle cx="-37.45" cy="-22.6" r="9.5" data-z="8.4"/><circle cx="37.45" cy="-22.6" r="9.5" data-z="8.4"/><circle cx="-20.9" cy="-13.0" r="9.5" data-z="-34.8"/><circle cx="20.9" cy="-13.0" r="9.5" data-z="-34.8"/><circle cx="-20.9" cy="13.45" r="9.5" data-z="34.8"/><circle cx="20.9" cy="13.45" r="9.5" data-z="34.8"/><circle cx="-37.47" cy="23.24" r="9.5" data-z="-8.4"/><circle cx="37.47" cy="23.24" r="9.5" data-z="-8.4"/><circle cx="0" cy="25.3" r="9.5" data-z="-35.1"/><circle cx="0" cy="44.8" r="9.5" data-z="7.9"/></g></svg>Centroid 3D Tours</a>
+    <nav aria-label="Global">
+      <a href="#camera">Camera</a><a href="#deliverables">Deliverables</a><a href="#how">How it works</a><a href="#pricing">Pricing</a><a href="#sample">Sample tour</a><a href="#about">About</a>
+    </nav>
+    <a class="btn" href="book.html">Book</a>
+  </div>
+</header>
+
+<main id="top">
+  <!-- HERO -->
+  <section class="hero" aria-labelledby="hero-h">
+    <div class="wrap">
+      <p class="eyebrow hero-in">Centroid 3D Tours</p>
+      <h1 class="h-xl gradient-text hero-in" id="hero-h">Every room.<br>On the record.</h1>
+      <p class="lead hero-in">360° tours and dated condition documentation<br>for St. Louis landlords.</p>
+      <div class="links hero-in"><a class="btn" href="book.html">Book a tour</a></div>
+    </div>
+    <div class="stage">
+      <div class="glow"></div>
+      <div class="cam" id="hero-cam" style="--m:url(img/cam-front-on.png)">
+        <img src="img/cam-front-on.png" width="347" height="914" alt="RICOH THETA X 360° camera, front view with the screen on">
+        <div class="sheen" id="sheen"></div>
+        <div class="reflection" aria-hidden="true"><img src="img/cam-front-on.png" alt=""></div>
+      </div>
+      <a class="hero-tour" id="hero-tour" href="#sample" aria-label="Watch the sample tour">
+        <span class="hero-tour-frame"><video id="hero-video" src="video/sample-tour.mp4" poster="video/sample-tour.jpg" muted loop playsinline autoplay preload="auto" aria-hidden="true"></video></span>
+        <span class="hero-tour-cap"><i></i>Sample tour</span>
+      </a>
+    </div>
+  </section>
+
+  <!-- PINNED ROTATION -->
+  <section class="spin" id="camera" aria-label="The camera">
+    <div class="spin-pin">
+      <div class="spin-stage">
+        <div class="frame"><img src="img/cam-front-off.png" width="349" height="920" alt="RICOH THETA X front view"></div>
+        <div class="frame"><img src="img/cam-angle.png" width="297" height="918" alt="RICOH THETA X at an angle"></div>
+        <div class="frame"><img src="img/cam-side.png" width="189" height="918" alt="RICOH THETA X side profile"></div>
+        <div class="frame"><img src="img/cam-back.png" width="345" height="910" alt="RICOH THETA X back view with its second lens"></div>
+      </div>
+      <div class="spin-copy">
+        <div class="msg"><p class="eyebrow">Shot on RICOH THETA X</p><h3>Pro-grade 360°.<br>Every shoot.</h3><p>Every tour is captured in person on a <b>Ricoh Theta X</b>, not a phone.</p></div>
+        <div class="msg"><h3>Two lenses.<br>One capture.</h3><p>Front and back lenses record the <b>entire room at once</b>, floor to ceiling.</p></div>
+        <div class="msg"><h3>From the<br>center of the room.</h3><p>The camera sits at each room's <b>centroid</b>, so nothing hides behind it.</p></div>
+        <div class="msg"><h3>Tour and record.<br>Same walkthrough.</h3><p>One visit gives you a <b>listing-ready tour</b> and a <b>dated condition record</b>.</p></div>
+        <div class="ticks" id="ticks" aria-hidden="true"><i class="on"></i><i></i><i></i><i></i></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DELIVERABLES -->
+  <section class="light section" id="deliverables" aria-labelledby="del-h">
+    <div class="wrap center">
+      <h2 class="h-lg fade" id="del-h">One shoot.<br>Everything you need.</h2>
+      <p class="lead muted fade">Built to lease units faster, and to protect you when something gets disputed.</p>
+      <div class="tiles">
+        <article class="tile dark fade">
+          <h3>360° tour</h3>
+          <p>A hosted link renters can walk room by room. Ready to drop into any listing.</p>
+          <div class="art"><img src="img/cam-front-on.png" alt="" style="max-height:300px"></div>
+        </article>
+        <article class="tile gray fade">
+          <h3>Condition record</h3>
+          <p>Dated, room-by-room notes, personally reviewed before they reach you.</p>
+          <ul class="doclist" aria-label="Example condition record">
+            <li><b>Living room</b><span><i class="dot"></i>Good</span></li>
+            <li><b>Kitchen</b><span><i class="dot"></i>Good</span></li>
+            <li><b>Bath 1</b><span><i class="dot warn"></i>Noted</span></li>
+            <li><b>Bedroom 2</b><span><i class="dot"></i>Good</span></li>
+            <li><b>Captured</b><span>Dated &amp; timestamped</span></li>
+          </ul>
+        </article>
+        <article class="tile wide gray fade">
+          <div>
+            <h3>Listing copy.<br>Written for you.</h3>
+            <p style="margin-top:12px">Every tour comes with an AI-generated listing description, drafted from the same walkthrough. Use it as is or make it your own.</p>
+          </div>
+          <div class="art">
+            <div class="listing" aria-label="Example listing description">
+              <span class="listing-tag">Example</span>
+              <p class="listing-title">Bright 2-bed near the Delmar Loop</p>
+              <p class="listing-meta">2 bd · 1 ba · 360° tour available</p>
+              <p class="listing-body">Sunlit living room with oversized windows, an updated kitchen with plenty of counter space, and two well-sized bedrooms. Walk every room in the 360° tour before you schedule a showing.</p>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section class="grayband section" id="how" aria-labelledby="how-h">
+    <div class="wrap center">
+      <h2 class="h-lg fade" id="how-h">Book it. We shoot it.<br>You get it.</h2>
+      <div class="steps">
+        <div class="step fade" style="text-align:left"><div class="ico-row"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4.5" width="18" height="16" rx="2.5"/><path d="M3 9.5h18M8 2.5v4M16 2.5v4"/><path d="M8.5 14.8l2.3 2.3 4.7-4.7"/></svg><small>Step 1</small></div><h3>Book your shoot</h3><p>Tell us the property and roughly how many bedrooms. We'll get you on the schedule fast.</p></div>
+        <div class="step fade" style="text-align:left"><div class="ico-row"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 21.5V7a5 5 0 0 1 10 0v14.5z"/><circle cx="12" cy="7" r="2.4"/><rect x="9.4" y="11.6" width="5.2" height="6" rx="1"/></svg><small>Step 2</small></div><h3>We capture everything</h3><p>A full 360° walkthrough on a Ricoh Theta X, plus room-by-room condition notes as we go.</p></div>
+        <div class="step fade" style="text-align:left"><div class="ico-row"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2.5H7A2 2 0 0 0 5 4.5v15a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7.5z"/><path d="M14 2.5v5h5"/><path d="M9 14.5l2 2 4-4"/></svg><small>Step 3</small></div><h3>Get your tour &amp; report</h3><p>A hosted tour link for your listing, and dated documentation ready for insurance or a move-out dispute.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STATS -->
+  <section class="section" aria-labelledby="stat-h">
+    <div class="wrap">
+      <h2 class="h-lg gradient-text fade" id="stat-h">The numbers<br>make the case.</h2>
+      <div class="stats">
+        <div class="stat fade"><div class="num"><span data-to="14" data-pre="+">+14</span>%</div><h3>Higher leasing conversion</h3><p>Listings with a 3D tour convert to leases at a meaningfully higher rate.</p><cite>Apartments.com / CoStar</cite></div>
+        <div class="stat fade"><div class="num"><span data-to="71" data-pre="+">+71</span>%</div><h3>More time on the listing</h3><p>Renters spend far longer with listings that include a 3D tour.</p><cite>CoStar</cite></div>
+        <div class="stat fade"><div class="num coral"><span data-to="60">60</span>%</div><h3>Of water claims denied</h3><p>The leading cause is insufficient documentation, not the damage itself.</p><cite>Industry data on insurance claim denials</cite></div>
+        <div class="stat fade"><div class="num coral"><span data-to="1" data-pre="#">#1</span></div><h3>Evidence in deposit disputes</h3><p>Dated photo and video documentation is consistently the most persuasive evidence.</p><cite>Landlord-tenant dispute resources</cite></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRICING -->
+  <section class="light section" id="pricing" aria-labelledby="pr-h">
+    <div class="wrap center">
+      <h2 class="h-lg fade" id="pr-h">Which tour is right for you?</h2>
+      <p class="lead muted fade">One flat rate by bedroom count. No subscriptions. No contracts.</p>
+      <div class="compare">
+        <div class="plan fade"><img class="plan-ico" src="img/icons/home-small.png" alt="" width="200" height="170"><h3>1–3 Bedrooms</h3><div class="price">$75</div><div class="per">per property</div><p>Single-family homes and smaller units.</p><a class="btn" href="book.html?beds=1-3">Book</a></div>
+        <div class="plan fade"><img class="plan-ico" src="img/icons/home-mid.png" alt="" width="200" height="170"><h3>4–6 Bedrooms</h3><div class="price">$125</div><div class="per">per property</div><p>Larger single-family homes and small multi-unit properties.</p><a class="btn" href="book.html?beds=4-6">Book</a></div>
+        <div class="plan fade"><img class="plan-ico" src="img/icons/apartment-building.png" alt="" width="200" height="170"><h3>7+ Bedrooms</h3><div class="price">$175</div><div class="per">per property</div><p>Multi-family and larger rental properties.</p><a class="btn" href="book.html?beds=7">Book</a></div>
+      </div>
+      <div class="incl fade">
+        <h3>Every tour includes</h3>
+        <ul><li>360° tour, shot on a Ricoh Theta X</li><li>Dated, room-by-room condition documentation</li><li>AI-generated listing description</li></ul>
+      </div>
+      <p class="fine">Priced by bedroom count, not sale price or square footage. Serving the Greater St. Louis Metro Area.</p>
+    </div>
+  </section>
+
+  <!-- SAMPLE -->
+  <section class="section" id="sample" aria-labelledby="sm-h">
+    <div class="wrap center">
+      <p class="eyebrow fade">Sample tour</p>
+      <h2 class="h-lg gradient-text fade" id="sm-h">Walk it before<br>you unlock it.</h2>
+      <p class="lead muted fade">Room by room, then the whole unit as a 3D model.</p>
+    </div>
+    <div class="tour-wrap">
+      <div class="tour-frame" id="tour-frame">
+        <video id="tour-video" src="video/sample-tour.mp4" poster="video/sample-tour.jpg" muted loop playsinline preload="metadata" aria-label="Sample walkthrough: kitchen, living room and bedroom, then a 3D dollhouse view of the whole unit"></video>
+        <button class="pp" id="pp" type="button" aria-label="Pause video"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path class="i-pause" d="M7 5h3.5v14H7zM13.5 5H17v14h-3.5z"/><path class="i-play" d="M8 5.5v13l10.5-6.5z" style="display:none"/></svg></button>
+      </div>
+    </div>
+    <div class="wrap">
+      <ul class="see-row">
+        <li class="fade"><b>360° walkthrough</b><span>Move room to room at your own pace.</span></li>
+        <li class="fade"><b>3D dollhouse view</b><span>See the whole layout at once.</span></li>
+        <li class="fade"><b>Flagged notes</b><span>Anything noted in the condition record, tagged in place.</span></li>
+        <li class="fade"><b>Dated record</b><span>Condition notes for every room, timestamped.</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section class="grayband section" id="about" aria-labelledby="ab-h">
+    <div class="wrap">
+      <h2 class="h-lg fade" id="ab-h">A local operator,<br>not a franchise.</h2>
+      <div class="about-grid">
+        <div class="fade"><p>Centroid 3D Tours is run by Ben Stephens, a junior at Washington University in St. Louis studying finance, with a background in real estate development and urban design.</p><p>It started with listing photos that never matched what was actually behind the walls, and no dated record of what a unit looked like before move-in.</p></div>
+        <div class="fade"><p>St. Louis has a lot of older housing stock, so wear and damage show up often and get expensive fast if they aren't documented.</p><p>Every shoot is done in person, and every report is personally reviewed before it goes out.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta" aria-labelledby="cta-h">
+    <div class="wrap">
+      <h2 class="h-xl gradient-text fade" id="cta-h">Know exactly what<br>it looked like.</h2>
+      <p class="lead muted fade">Before the tenant moved in. Flat fee. Fast turnaround.</p>
+      <div class="links fade"><a class="btn" href="book.html">Book a tour</a><a href="tel:+19204951009">Call (920) 495-1009</a></div>
+    </div>
+    <div class="cam-row" id="cam-row" aria-hidden="true">
+      <img src="img/cam-side.png" alt=""><img src="img/cam-front-on.png" alt=""><img src="img/cam-back.png" alt="">
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <p class="note">Statistics are from Apartments.com/CoStar, CoStar, industry data on insurance claim denials, and landlord-tenant dispute resources. Camera product images © RICOH. RICOH THETA is a trademark of Ricoh Company, Ltd.; Centroid 3D Tours is not affiliated with Ricoh.</p>
+    <div class="cols">
+      <div><h4>Explore</h4><ul><li><a href="#camera">The camera</a></li><li><a href="#deliverables">Deliverables</a></li><li><a href="#how">How it works</a></li></ul></div>
+      <div><h4>Pricing</h4><ul><li><a href="#pricing">1–3 Bedrooms · $75</a></li><li><a href="#pricing">4–6 Bedrooms · $125</a></li><li><a href="#pricing">7+ Bedrooms · $175</a></li></ul></div>
+      <div><h4>Company</h4><ul><li><a href="#about">About</a></li><li><a href="#sample">Sample tour</a></li><li><a class="btn" href="book.html">Book a tour</a></li></ul></div>
+      <div><h4>Contact</h4><ul><li><a href="tel:+19204951009">(920) 495-1009</a></li><li>Greater St. Louis Metro Area</li></ul></div>
+    </div>
+    <div class="legal"><span>Copyright © 2026 Centroid 3D Tours. All rights reserved.</span><span>St. Louis, MO</span></div>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
+<script>
+gsap.registerPlugin(ScrollTrigger);
+const mm = gsap.matchMedia();
+
+mm.add("(prefers-reduced-motion: no-preference)", () => {
+  /* hero: text rises, camera emerges from darkness with a slow light sweep */
+  gsap.from(".hero-in", { y: 30, autoAlpha: 0, duration: 1.2, stagger: .12, ease: "power3.out" });
+  gsap.from("#hero-cam", { yPercent: 12, scale: .92, autoAlpha: 0, filter: "brightness(0)", duration: 2.2, ease: "power3.out", delay: .3 });
+  gsap.from(".hero .glow", { scale: .6, autoAlpha: 0, duration: 2.6, ease: "power2.out", delay: .5 });
+  gsap.from("#hero-tour", { x: 40, autoAlpha: 0, duration: 1.4, ease: "power3.out", delay: 1.2 });
+  gsap.fromTo("#sheen", { backgroundPosition: "130% 0" }, { backgroundPosition: "-40% 0", duration: 2.8, ease: "power2.inOut", delay: 1.4, repeat: -1, repeatDelay: 3.5 });
+  gsap.to("#hero-cam", { y: -8, duration: 3.2, ease: "sine.inOut", yoyo: true, repeat: -1 });
+  // scrolling away: camera rises and the glow dims
+  gsap.to(".hero .stage", { yPercent: -18, scale: 1.08, ease: "none", scrollTrigger: { trigger: ".hero .stage", start: "top 60%", end: "bottom top", scrub: true } });
+  gsap.to(".hero .glow", { autoAlpha: .2, ease: "none", scrollTrigger: { trigger: ".hero .stage", start: "center center", end: "bottom top", scrub: true } });
+
+  /* pinned rotation: crossfade front → angle → side → back with a turn */
+  const frames = gsap.utils.toArray(".spin-stage .frame");
+  const msgs = gsap.utils.toArray(".spin-copy .msg");
+  const ticks = [...document.querySelectorAll("#ticks i")];
+  const tl = gsap.timeline({ scrollTrigger: { trigger: ".spin", start: "top top", end: "bottom bottom", scrub: .7,
+    onUpdate: s => { const k = Math.min(3, Math.floor(s.progress * 4)); ticks.forEach((t, i) => t.classList.toggle("on", i === k)); } } });
+  gsap.set(frames[0], { rotationY: 0 });
+  for (let i = 1; i < frames.length; i++) {
+    tl.to(frames[i - 1], { autoAlpha: 0, rotationY: -35, scale: .96, duration: 1, ease: "power1.inOut" }, i * 2 - 1)
+      .fromTo(frames[i], { autoAlpha: 0, rotationY: 35, scale: .96 }, { autoAlpha: 1, rotationY: 0, scale: 1, duration: 1, ease: "power1.inOut" }, "<")
+      .to(msgs[i - 1], { autoAlpha: 0, y: -30, duration: .6 }, "<")
+      .fromTo(msgs[i], { autoAlpha: 0, y: 30 }, { autoAlpha: 1, y: 0, duration: .6 }, "<.4");
+  }
+  tl.to({}, { duration: 1 });
+
+  /* reveals */
+  gsap.utils.toArray(".fade").forEach(el => gsap.to(el, { autoAlpha: 1, y: 0, duration: 1.1, ease: "power3.out", scrollTrigger: { trigger: el, start: "top 88%" } }));
+
+  /* numbers: count up from zero while sharpening into focus, one after another */
+  const count = (el, to, pre, delay) => { const o = { v: 0 }; el.textContent = pre + 0;
+    gsap.to(o, { v: to, duration: 1.9, ease: "power3.out", delay, onUpdate: () => el.textContent = pre + Math.round(o.v) }); };
+  gsap.set(".stat .num", { autoAlpha: 0 });
+  document.querySelectorAll(".stat .num span").forEach(el => el.textContent = (el.dataset.pre || "") + 0);
+  ScrollTrigger.batch(".stat .num", { start: "top 88%", once: true, onEnter: nums => nums.forEach((n, i) => {
+    const el = n.querySelector("span");
+    gsap.fromTo(n, { autoAlpha: 0, scale: .82, filter: "blur(12px)" }, { autoAlpha: 1, scale: 1, filter: "blur(0px)", duration: 1.3, ease: "power3.out", delay: i * .15, transformOrigin: "left bottom" });
+    count(el, +el.dataset.to, el.dataset.pre || "", i * .15);
+  }) });
+  // prices tick up from $0 when the plans come into view
+  gsap.utils.toArray(".plan .price").forEach((p, i) => {
+    const to = parseInt(p.textContent.replace(/\D/g, ""), 10);
+    p.textContent = "$0";
+    ScrollTrigger.create({ trigger: p, start: "top 90%", once: true, onEnter: () => count(p, to, "$", .2 + i * .12) });
+  });
+
+  /* sample tour: the frame grows into place as it comes into view */
+  gsap.fromTo("#tour-frame", { scale: .86 }, { scale: 1, ease: "none", scrollTrigger: { trigger: "#tour-frame", start: "top bottom", end: "center center", scrub: true } });
+
+  /* closing row: three views rise in, center lifts */
+  gsap.from("#cam-row img", { yPercent: 40, autoAlpha: 0, duration: 1.4, stagger: .15, ease: "power3.out", scrollTrigger: { trigger: "#cam-row", start: "top 85%" } });
+  gsap.to("#cam-row img:nth-child(2)", { y: -12, duration: 3, ease: "sine.inOut", yoyo: true, repeat: -1 });
+});
+mm.add("(prefers-reduced-motion: reduce)", () => {
+  gsap.set(".spin-stage .frame, .spin-copy .msg", { autoAlpha: 1, position: "relative" });
+  document.querySelector(".spin").style.height = "auto";
+});
+/* hero video: small autoplaying preview, paused off screen or for reduced motion */
+(function () {
+  const v = document.getElementById("hero-video");
+  if (matchMedia("(prefers-reduced-motion: reduce)").matches) { v.removeAttribute("autoplay"); v.pause(); return; }
+  new IntersectionObserver(([e]) => e.isIntersecting ? v.play().catch(() => {}) : v.pause()).observe(v);
+})();
+/* sample video: plays only while on screen, with a pause control */
+(function () {
+  const v = document.getElementById("tour-video"), btn = document.getElementById("pp");
+  const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  let userPaused = reduce;
+  const setIcon = playing => {
+    btn.querySelector(".i-pause").style.display = playing ? "" : "none";
+    btn.querySelector(".i-play").style.display = playing ? "none" : "";
+    btn.setAttribute("aria-label", playing ? "Pause video" : "Play video");
+  };
+  setIcon(!reduce);
+  new IntersectionObserver(([e]) => { if (e.isIntersecting && !userPaused) v.play().catch(() => {}); else v.pause(); }, { threshold: .25 }).observe(v);
+  btn.addEventListener("click", () => { if (v.paused) { userPaused = false; v.play(); setIcon(true); } else { userPaused = true; v.pause(); setIcon(false); } });
+})();
+addEventListener("load", () => ScrollTrigger.refresh());
+</script>
+<script src="js/logo.js"></script>
+<script src="js/buttons.js"></script>
+</body>
+</html>

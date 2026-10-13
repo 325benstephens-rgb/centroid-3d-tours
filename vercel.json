@@ -1,3 +1,14 @@
 {
-  "rewrites": [{ "source": "/(.*)", "destination": "/index.html" }]
+  "framework": null,
+  "installCommand": "echo 'static site: nothing to install'",
+  "buildCommand": "echo 'static site: nothing to build'",
+  "outputDirectory": "site",
+  "cleanUrls": true,
+  "redirects": [
+    { "source": "/contact", "destination": "/book", "permanent": false },
+    { "source": "/pricing", "destination": "/#pricing", "permanent": false },
+    { "source": "/services", "destination": "/#deliverables", "permanent": false },
+    { "source": "/sample-tour", "destination": "/#sample", "permanent": false },
+    { "source": "/about", "destination": "/#about", "permanent": false }
+  ]
 }

@@ -1,0 +1,221 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Book a Tour — Centroid 3D Tours</title>
+<meta name="description" content="Book a 360° tour and condition documentation shoot in St. Louis. Flat rate by bedroom count, from $75.">
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#000000">
+<link rel="icon" href="img/logo-dots.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --black: #000; --graphite: #1d1d1f; --gray: #86868b; --light: #f5f5f7; --white: #fff;
+    --coral: #F2595B; --line: #d2d2d7; --muted: #6e6e73;
+    --font: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Inter", "Helvetica Neue", Arial, sans-serif;
+  }
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body { margin: 0; background: var(--light); color: var(--graphite); font: 400 17px/1.47 var(--font); letter-spacing: -.022em; -webkit-font-smoothing: antialiased; }
+  img { display: block; max-width: 100%; }
+  a { color: inherit; text-decoration: none; }
+  :focus-visible { outline: 2px solid #0071e3; outline-offset: 3px; border-radius: 4px; }
+  .wrap { width: min(980px, 100% - 44px); margin-inline: auto; }
+
+  .gnav { position: sticky; top: 0; z-index: 50; height: 48px; background: rgba(0,0,0,.8); -webkit-backdrop-filter: saturate(180%) blur(20px); backdrop-filter: saturate(180%) blur(20px); }
+  .gnav .wrap { height: 100%; display: flex; align-items: center; justify-content: space-between; font-size: 12px; }
+  .gnav .logo { display: flex; align-items: center; gap: 10px; color: #f5f5f7; font-weight: 600; font-size: 14px; }
+  .gnav .logo svg { width: 32px; height: 32px; overflow: visible; }
+  .gnav nav { display: flex; gap: clamp(14px, 3vw, 34px); color: #d2d2d7; }
+  .gnav nav a:hover { color: #fff; }
+  .gnav .btn { background: var(--coral); color: #fff; border-radius: 980px; padding: 4px 12px; transition: background-color .25s, box-shadow .35s, transform .35s cubic-bezier(.2,.8,.2,1); }
+  /* button motion: lift + glow on hover, a light sweep across, press-in on click */
+  .btn, .submit { position: relative; overflow: hidden; isolation: isolate; transform: translate(var(--tx, 0px), var(--ty, 0px)) scale(var(--s, 1)); }
+  .btn::before, .submit::before { content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none; transform: translateX(-130%);
+    background: linear-gradient(110deg, transparent 30%, rgba(255,255,255,.45) 50%, transparent 70%); }
+  @media (hover: hover) and (prefers-reduced-motion: no-preference) {
+    .btn:hover, .submit:not(:disabled):hover { --s: 1.04; box-shadow: 0 10px 28px -8px rgba(242,89,91,.65); }
+    .btn:hover::before, .submit:not(:disabled):hover::before { transform: translateX(130%); transition: transform .75s ease; }
+  }
+  .btn:active, .submit:not(:disabled):active { --s: .96; transition-duration: .1s; }
+
+
+  .head { padding: 70px 0 40px; text-align: center; }
+  .head h1 { font-size: clamp(40px, 5.6vw, 64px); line-height: 1.06; font-weight: 600; margin: 0; }
+  .head p { font-size: clamp(19px, 2vw, 24px); color: var(--muted); margin: 14px 0 0; letter-spacing: .007em; }
+
+  .grid { display: grid; grid-template-columns: 1fr 1.35fr; gap: 20px; padding-bottom: 100px; align-items: start; }
+  .card { background: var(--white); border-radius: 22px; padding: 34px 32px; }
+
+  .summary { position: sticky; top: 70px; }
+  .summary .label { font-size: 12px; font-weight: 600; color: var(--gray); text-transform: uppercase; letter-spacing: .04em; margin: 0 0 6px; }
+  .summary .plan-name { font-size: 24px; font-weight: 600; margin: 0; }
+  .summary .price { font-size: 48px; font-weight: 600; letter-spacing: -.01em; margin: 6px 0 0; transition: opacity .25s; }
+  .summary .per { color: var(--gray); font-size: 14px; }
+  .summary ul { list-style: none; padding: 0; margin: 22px 0 0; border-top: 1px solid var(--line); }
+  .summary li { display: flex; gap: 10px; align-items: baseline; padding: 11px 0; border-bottom: 1px solid var(--line); font-size: 15px; }
+  .summary li::before { content: "✓"; color: var(--coral); font-weight: 700; }
+  .contact { margin-top: 26px; display: grid; gap: 14px; font-size: 15px; }
+  .contact div { display: flex; gap: 12px; align-items: center; }
+  .contact svg { width: 20px; height: 20px; flex: none; color: var(--graphite); }
+  .contact a:hover { text-decoration: underline; }
+  .contact small { display: block; color: var(--gray); font-size: 12px; }
+
+  form { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .field { position: relative; }
+  .field.full { grid-column: 1 / -1; }
+  .field input, .field select, .field textarea {
+    width: 100%; font: inherit; font-size: 17px; color: var(--graphite); background: var(--white);
+    border: 1px solid #86868b; border-radius: 12px; padding: 26px 16px 8px; outline: none; transition: border-color .2s, box-shadow .2s;
+    -webkit-appearance: none; appearance: none;
+  }
+  .field textarea { min-height: 130px; resize: vertical; }
+  .field select { padding-right: 40px; cursor: pointer; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' fill='none' stroke='%231d1d1f' stroke-width='1.6'%3E%3Cpath d='M1 1.5l5 5 5-5'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 16px center; }
+  .field input:focus, .field select:focus, .field textarea:focus { border-color: #0071e3; box-shadow: 0 0 0 4px rgba(0,113,227,.15); }
+  .field label { position: absolute; left: 17px; top: 17px; font-size: 17px; color: var(--gray); pointer-events: none; transition: all .18s ease; }
+  .field input:focus + label, .field input:not(:placeholder-shown) + label,
+  .field textarea:focus + label, .field textarea:not(:placeholder-shown) + label,
+  .field select + label { top: 8px; font-size: 12px; }
+  .field input:user-invalid { border-color: #e30000; background: #fff5f5; }
+  .req { color: var(--coral); }
+  .actions { grid-column: 1 / -1; display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; margin-top: 6px; }
+  .actions small { color: var(--gray); font-size: 12px; max-width: 34ch; }
+  .submit { background: var(--coral); color: #fff; border: 0; border-radius: 980px; padding: 13px 28px; font: inherit; font-size: 17px; cursor: pointer; transition: background-color .25s, opacity .25s, box-shadow .35s, transform .35s cubic-bezier(.2,.8,.2,1); }
+  .submit:hover { background: #ff6d6f; }
+  .submit:disabled { opacity: .6; cursor: default; }
+  .notice { grid-column: 1 / -1; border-radius: 12px; padding: 14px 16px; font-size: 15px; display: none; }
+  .notice.ok { display: block; background: #e8f8ee; color: #0b6b31; }
+  .notice.err { display: block; background: #fff1f0; color: #b3261e; }
+
+  .done { text-align: center; padding: 40px 10px; display: none; }
+  .done svg { width: 56px; height: 56px; margin: 0 auto 18px; color: #30d158; }
+  .done h2 { font-size: 32px; font-weight: 600; margin: 0 0 8px; }
+  .done p { color: var(--muted); margin: 0 0 22px; }
+  .done a { color: #0066cc; }
+  .done a::after { content: " ›"; }
+
+  footer { color: var(--muted); font-size: 12px; padding: 18px 0 30px; border-top: 1px solid var(--line); }
+  footer .wrap { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px; }
+
+  @media (max-width: 834px) {
+    .gnav nav { display: none; }
+    .grid { grid-template-columns: 1fr; }
+    .summary { position: static; order: 2; }
+  }
+  @media (max-width: 520px) {
+    form { grid-template-columns: 1fr; }
+    .card { padding: 26px 20px; }
+  }
+</style>
+<script>window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };</script>
+<script defer src="/_vercel/insights/script.js"></script>
+</head>
+<body>
+
+<header class="gnav">
+  <div class="wrap">
+    <a class="logo" href="index.html"><svg class="logo-dots" viewBox="-50 -50 100 100" aria-hidden="true"><g transform="scale(.78)" fill="#FF5A5C"><circle cx="0" cy="-44.8" r="9.5" data-z="-7.9"/><circle cx="0" cy="-25.3" r="9.5" data-z="35.1"/><circle cx="-37.45" cy="-22.6" r="9.5" data-z="8.4"/><circle cx="37.45" cy="-22.6" r="9.5" data-z="8.4"/><circle cx="-20.9" cy="-13.0" r="9.5" data-z="-34.8"/><circle cx="20.9" cy="-13.0" r="9.5" data-z="-34.8"/><circle cx="-20.9" cy="13.45" r="9.5" data-z="34.8"/><circle cx="20.9" cy="13.45" r="9.5" data-z="34.8"/><circle cx="-37.47" cy="23.24" r="9.5" data-z="-8.4"/><circle cx="37.47" cy="23.24" r="9.5" data-z="-8.4"/><circle cx="0" cy="25.3" r="9.5" data-z="-35.1"/><circle cx="0" cy="44.8" r="9.5" data-z="7.9"/></g></svg>Centroid 3D Tours</a>
+    <nav aria-label="Global">
+      <a href="index.html#camera">Camera</a><a href="index.html#deliverables">Deliverables</a><a href="index.html#how">How it works</a><a href="index.html#pricing">Pricing</a><a href="index.html#sample">Sample tour</a><a href="index.html#about">About</a>
+    </nav>
+    <a class="btn" href="book.html" aria-current="page">Book</a>
+  </div>
+</header>
+
+<main>
+  <section class="head wrap">
+    <h1>Book a tour.</h1>
+    <p>Tell us about the property. We'll follow up within a business day.</p>
+  </section>
+
+  <div class="wrap grid">
+    <aside class="card summary" aria-label="Your tour">
+      <p class="label">Your tour</p>
+      <p class="plan-name" id="plan-name">1–3 Bedrooms</p>
+      <p class="price" id="plan-price">$75</p>
+      <span class="per">per property · flat rate</span>
+      <ul>
+        <li>360° tour, shot on a Ricoh Theta X</li>
+        <li>Dated, room-by-room condition documentation</li>
+        <li>AI-generated listing description</li>
+      </ul>
+      <div class="contact">
+        <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 3h3l2 5-2.5 1.5a11 11 0 0 0 7 7L16 14l5 2v3a2 2 0 0 1-2 2A16 16 0 0 1 3 5a2 2 0 0 1 2-2z"/></svg><span><small>Phone</small><a href="tel:+19204951009">(920) 495-1009</a></span></div>
+        <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-6.2-7-11.5a7 7 0 0 1 14 0C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg><span><small>Service area</small>Greater St. Louis Metro Area</span></div>
+      </div>
+    </aside>
+
+    <div class="card">
+      <form id="book-form" action="https://formspree.io/f/mnpqwvjy" method="POST" novalidate>
+        <input type="hidden" name="_subject" value="New tour request">
+        <div class="field"><input id="name" name="name" placeholder=" " autocomplete="name" required><label for="name">Name <span class="req">*</span></label></div>
+        <div class="field"><input id="email" name="email" type="email" placeholder=" " autocomplete="email" required><label for="email">Email <span class="req">*</span></label></div>
+        <div class="field"><input id="phone" name="phone" type="tel" placeholder=" " autocomplete="tel"><label for="phone">Phone</label></div>
+        <div class="field">
+          <select id="bedrooms" name="bedrooms">
+            <option value="1–3 Bedrooms" data-price="$75">1–3 Bedrooms · $75</option>
+            <option value="4–6 Bedrooms" data-price="$125">4–6 Bedrooms · $125</option>
+            <option value="7+ Bedrooms" data-price="$175">7+ Bedrooms · $175</option>
+            <option value="Not sure yet" data-price="From $75">Not sure yet</option>
+          </select><label for="bedrooms">Bedrooms</label>
+        </div>
+        <div class="field full"><input id="address" name="address" placeholder=" " autocomplete="street-address"><label for="address">Property address</label></div>
+        <div class="field full"><textarea id="message" name="message" placeholder=" "></textarea><label for="message">Anything we should know? Timeline, access, etc.</label></div>
+        <p class="notice" id="notice" role="status" aria-live="polite"></p>
+        <div class="actions">
+          <small>We'll only use your info to schedule your shoot.</small>
+          <button class="submit" id="submit" type="submit">Send request</button>
+        </div>
+      </form>
+      <div class="done" id="done" role="status" aria-live="polite">
+        <svg viewBox="0 0 56 56" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="28" cy="28" r="25"/><path d="M17 29l7 7 15-16"/></svg>
+        <h2>Request sent.</h2>
+        <p>Thanks. We'll follow up within a business day to get you on the schedule.</p>
+        <a href="index.html">Back to Centroid 3D Tours</a>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer><div class="wrap"><span>Copyright © 2026 Centroid 3D Tours. All rights reserved.</span><span>St. Louis, MO</span></div></footer>
+
+<script>
+  const sel = document.getElementById("bedrooms");
+  const nameEl = document.getElementById("plan-name"), priceEl = document.getElementById("plan-price");
+  function syncPlan() {
+    const o = sel.selectedOptions[0];
+    nameEl.textContent = o.value === "Not sure yet" ? "Not sure yet" : o.value;
+    priceEl.textContent = o.dataset.price;
+  }
+  // Pricing buttons link here with ?beds=1-3 / 4-6 / 7
+  const beds = new URLSearchParams(location.search).get("beds");
+  const map = { "1-3": 0, "4-6": 1, "7": 2 };
+  if (beds in map) sel.selectedIndex = map[beds];
+  sel.addEventListener("change", syncPlan); syncPlan();
+
+  const form = document.getElementById("book-form"), notice = document.getElementById("notice"), btn = document.getElementById("submit");
+  form.addEventListener("submit", async e => {
+    e.preventDefault();
+    notice.className = "notice"; notice.textContent = "";
+    if (!form.checkValidity()) {
+      notice.className = "notice err"; notice.textContent = "Please add your name and a valid email so we can reach you.";
+      form.querySelector(":invalid")?.focus(); return;
+    }
+    btn.disabled = true; btn.textContent = "Sending…";
+    try {
+      const r = await fetch(form.action, { method: "POST", headers: { Accept: "application/json" }, body: new FormData(form) });
+      if (!r.ok) throw new Error("send failed");
+      form.style.display = "none"; document.getElementById("done").style.display = "block";
+    } catch {
+      notice.className = "notice err"; notice.innerHTML = 'That didn’t go through. Try again, or call <a href="tel:+19204951009">(920) 495-1009</a>.';
+      btn.disabled = false; btn.textContent = "Send request";
+    }
+  });
+</script>
+<script src="js/logo.js"></script>
+<script src="js/buttons.js"></script>
+</body>
+</html>
