@@ -26,7 +26,7 @@
     --max: 980px;
   }
   * { box-sizing: border-box; }
-  html { -webkit-text-size-adjust: 100%; }
+  html { -webkit-text-size-adjust: 100%; scroll-padding-top: 48px; }
   body { margin: 0; background: var(--black); color: var(--light); font: 400 17px/1.47 var(--font); letter-spacing: -.022em; -webkit-font-smoothing: antialiased; }
   img { display: block; max-width: 100%; }
   a { color: inherit; text-decoration: none; }
@@ -105,9 +105,9 @@
   .reflection img { height: 333%; width: auto; }
 
   /* ---------- pinned rotation ---------- */
-  .spin { position: relative; height: 420vh; }
-  .spin-pin { position: sticky; top: 48px; height: calc(100vh - 48px); display: grid; grid-template-columns: 1fr 1fr; align-items: center; width: min(1100px, 100% - 44px); margin: 0 auto; }
-  .spin-stage { position: relative; height: 76%; perspective: 1400px; }
+  .spin { position: relative; padding: 20px 0; }
+  .spin-pin { position: relative; height: clamp(560px, calc(100svh - 48px), 860px); display: grid; grid-template-columns: 1fr 1fr; align-items: center; width: min(1100px, 100% - 44px); margin: 0 auto; }
+  .spin-stage { position: relative; height: 76%; perspective: 1400px; touch-action: pan-y; cursor: grab; }
   .spin-stage .frame { position: absolute; inset: 0; display: flex; justify-content: center; align-items: center; opacity: 0; }
   .spin-stage .frame:first-child { opacity: 1; }
   .spin-stage img { height: 100%; max-height: 640px; width: auto; object-fit: contain; filter: drop-shadow(0 30px 50px rgba(0,0,0,.85)); }
@@ -117,9 +117,18 @@
   .spin-copy h3 { font-size: clamp(32px, 4vw, 56px); line-height: 1.07; font-weight: 600; margin: 0 0 14px; }
   .spin-copy p { margin: 0; color: var(--gray); font-size: clamp(17px, 1.6vw, 21px); max-width: 26ch; }
   .spin-copy p b { color: var(--light); font-weight: 600; }
-  .ticks { position: absolute; left: 0; bottom: -10px; display: flex; gap: 8px; }
-  .ticks i { width: 8px; height: 8px; border-radius: 50%; background: #424245; transition: background-color .3s, width .3s; }
-  .ticks i.on { background: var(--light); width: 24px; border-radius: 8px; }
+  .cam-nav { position: absolute; left: 0; bottom: -10px; display: flex; align-items: center; gap: 12px; }
+  .cam-tabs { display: flex; gap: 2px; padding: 4px; border-radius: 980px; background: rgba(255,255,255,.08); }
+  .cam-tabs button { position: relative; overflow: hidden; border: 0; background: transparent; color: var(--gray); font: inherit; font-size: 13px; padding: 7px 14px; border-radius: 980px; cursor: pointer; transition: color .3s, background-color .3s; }
+  .cam-tabs button:hover { color: var(--light); }
+  .cam-tabs button[aria-selected="true"] { background: #f5f5f7; color: #1d1d1f; }
+  .cam-tabs button::after { content: ""; position: absolute; left: 14px; right: 14px; bottom: 3px; height: 2px; border-radius: 2px; background: #F2595B; transform: scaleX(0); transform-origin: left; }
+  .spin.auto .cam-tabs button[aria-selected="true"]::after { animation: tabfill 5s linear forwards; }
+  @keyframes tabfill { to { transform: scaleX(1); } }
+  .cam-arrow { width: 36px; height: 36px; flex: none; border-radius: 50%; border: 0; background: rgba(255,255,255,.1); color: #f5f5f7; display: grid; place-items: center; cursor: pointer; transition: background-color .2s, transform .3s cubic-bezier(.2,.8,.2,1); }
+  .cam-arrow:hover { background: rgba(255,255,255,.2); transform: scale(1.08); }
+  .cam-arrow:active { transform: scale(.92); }
+  .cam-arrow svg { width: 14px; height: 14px; }
 
   /* ---------- light section ---------- */
   .light { background: var(--white); color: var(--graphite); }
@@ -235,7 +244,11 @@
     .spin-pin { grid-template-columns: 1fr; grid-template-rows: 54% 46%; }
     .spin-stage { height: 92%; align-self: center; }
     .spin-copy .msg { padding-top: 10px; }
-    .ticks { left: 50%; transform: translateX(-50%); bottom: 24px; }
+    .spin-pin { height: clamp(620px, calc(100svh - 48px), 860px); }
+    .cam-nav { left: 50%; transform: translateX(-50%); bottom: 20px; }
+    .cam-arrow { display: none; }
+    .cam-tabs button { font-size: 12px; padding: 6px 11px; }
+    .cam-tabs button::after { left: 11px; right: 11px; }
     .hero .stage { --sh: clamp(240px, calc(100svh - 500px), 440px); --gap: 14px; --pad: 36px; }
     .hero-tour-frame { border-radius: 14px; }
     .hero-tour-cap { left: 10px; bottom: 10px; font-size: 12px; padding: 5px 11px 5px 9px; }
@@ -291,7 +304,7 @@
     </div>
   </section>
 
-  <!-- PINNED ROTATION -->
+  <!-- CAMERA VIEWS (tabs, no scroll lock) -->
   <section class="spin" id="camera" aria-label="The camera">
     <div class="spin-pin">
       <div class="spin-stage">
@@ -305,7 +318,13 @@
         <div class="msg"><h3>Two lenses.<br>One capture.</h3><p>Front and back lenses record the <b>entire room at once</b>, floor to ceiling.</p></div>
         <div class="msg"><h3>From the<br>center of the room.</h3><p>The camera sits at each room's <b>centroid</b>, so nothing hides behind it.</p></div>
         <div class="msg"><h3>Tour and record.<br>Same walkthrough.</h3><p>One visit gives you a <b>listing-ready tour</b> and a <b>dated condition record</b>.</p></div>
-        <div class="ticks" id="ticks" aria-hidden="true"><i class="on"></i><i></i><i></i><i></i></div>
+        <div class="cam-nav">
+          <button class="cam-arrow" id="cam-prev" aria-label="Previous view"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 3 5 8l5 5"/></svg></button>
+          <div class="cam-tabs" role="tablist" aria-label="Camera views">
+            <button role="tab" aria-selected="true">Overview</button><button role="tab" aria-selected="false" tabindex="-1">Lenses</button><button role="tab" aria-selected="false" tabindex="-1">Centered</button><button role="tab" aria-selected="false" tabindex="-1">Record</button>
+          </div>
+          <button class="cam-arrow" id="cam-next" aria-label="Next view"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 3 5 5-5 5"/></svg></button>
+        </div>
       </div>
     </div>
   </section>
@@ -471,21 +490,6 @@ mm.add("(prefers-reduced-motion: no-preference)", () => {
   gsap.to(".hero .stage", { yPercent: -18, scale: 1.08, ease: "none", scrollTrigger: { trigger: ".hero .stage", start: "top 60%", end: "bottom top", scrub: true } });
   gsap.to(".hero .glow", { autoAlpha: .2, ease: "none", scrollTrigger: { trigger: ".hero .stage", start: "center center", end: "bottom top", scrub: true } });
 
-  /* pinned rotation: crossfade front → angle → side → back with a turn */
-  const frames = gsap.utils.toArray(".spin-stage .frame");
-  const msgs = gsap.utils.toArray(".spin-copy .msg");
-  const ticks = [...document.querySelectorAll("#ticks i")];
-  const tl = gsap.timeline({ scrollTrigger: { trigger: ".spin", start: "top top", end: "bottom bottom", scrub: .7,
-    onUpdate: s => { const k = Math.min(3, Math.floor(s.progress * 4)); ticks.forEach((t, i) => t.classList.toggle("on", i === k)); } } });
-  gsap.set(frames[0], { rotationY: 0 });
-  for (let i = 1; i < frames.length; i++) {
-    tl.to(frames[i - 1], { autoAlpha: 0, rotationY: -35, scale: .96, duration: 1, ease: "power1.inOut" }, i * 2 - 1)
-      .fromTo(frames[i], { autoAlpha: 0, rotationY: 35, scale: .96 }, { autoAlpha: 1, rotationY: 0, scale: 1, duration: 1, ease: "power1.inOut" }, "<")
-      .to(msgs[i - 1], { autoAlpha: 0, y: -30, duration: .6 }, "<")
-      .fromTo(msgs[i], { autoAlpha: 0, y: 30 }, { autoAlpha: 1, y: 0, duration: .6 }, "<.4");
-  }
-  tl.to({}, { duration: 1 });
-
   /* reveals */
   gsap.utils.toArray(".fade").forEach(el => gsap.to(el, { autoAlpha: 1, y: 0, duration: 1.1, ease: "power3.out", scrollTrigger: { trigger: el, start: "top 88%" } }));
 
@@ -514,9 +518,51 @@ mm.add("(prefers-reduced-motion: no-preference)", () => {
   gsap.to("#cam-row img:nth-child(2)", { y: -12, duration: 3, ease: "sine.inOut", yoyo: true, repeat: -1 });
 });
 mm.add("(prefers-reduced-motion: reduce)", () => {
-  gsap.set(".spin-stage .frame, .spin-copy .msg", { autoAlpha: 1, position: "relative" });
-  document.querySelector(".spin").style.height = "auto";
 });
+/* camera views: crossfade with a quarter turn between front, angle, side and back.
+   Driven by tabs, arrows, swipe, and a 5s autoplay while on screen; never locks scrolling. */
+(function () {
+  const sec = document.getElementById("camera");
+  const frames = gsap.utils.toArray(".spin-stage .frame"), msgs = gsap.utils.toArray(".spin-copy .msg");
+  const tabs = [...sec.querySelectorAll(".cam-tabs button")];
+  const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const tl = gsap.timeline({ paused: true });           // view i is fully shown at time i
+  for (let i = 1; i < frames.length; i++) {
+    tl.to(frames[i - 1], { autoAlpha: 0, rotationY: -35, scale: .96, duration: 1, ease: "power1.inOut" }, i - 1)
+      .fromTo(frames[i], { autoAlpha: 0, rotationY: 35, scale: .96 }, { autoAlpha: 1, rotationY: 0, scale: 1, duration: 1, ease: "power1.inOut" }, "<")
+      .to(msgs[i - 1], { autoAlpha: 0, y: -30, duration: .6 }, "<")
+      .fromTo(msgs[i], { autoAlpha: 0, y: 30 }, { autoAlpha: 1, y: 0, duration: .6 }, "<.4");
+  }
+  let cur = 0, visible = false, stopped = reduce, timer;
+  function goTo(k, byUser) {
+    k = (k + frames.length) % frames.length;
+    if (byUser) { stopped = true; sec.classList.remove("auto"); }
+    if (k !== cur) {
+      const d = Math.abs(k - cur); cur = k;
+      if (reduce) tl.seek(k); else tl.tweenTo(k, { duration: Math.min(1.8, .55 + .4 * d), ease: "power2.inOut" });
+      tabs.forEach((t, i) => { t.setAttribute("aria-selected", i === k); t.tabIndex = i === k ? 0 : -1; });
+    }
+    schedule();
+  }
+  function schedule() {
+    clearTimeout(timer);
+    const on = !stopped && visible;
+    sec.classList.toggle("auto", on);
+    if (on) timer = setTimeout(() => goTo(cur + 1), 5000);
+  }
+  tabs.forEach((t, i) => t.addEventListener("click", () => goTo(i, true)));
+  sec.querySelector(".cam-tabs").addEventListener("keydown", e => {
+    const d = e.key === "ArrowRight" ? 1 : e.key === "ArrowLeft" ? -1 : 0;
+    if (d) { e.preventDefault(); goTo(cur + d, true); tabs[cur].focus(); }
+  });
+  document.getElementById("cam-prev").addEventListener("click", () => goTo(cur - 1, true));
+  document.getElementById("cam-next").addEventListener("click", () => goTo(cur + 1, true));
+  let x0 = null;                                         // swipe left/right on the camera
+  const stage = sec.querySelector(".spin-stage");
+  stage.addEventListener("pointerdown", e => x0 = e.clientX);
+  stage.addEventListener("pointerup", e => { if (x0 !== null && Math.abs(e.clientX - x0) > 40) goTo(cur + (e.clientX < x0 ? 1 : -1), true); x0 = null; });
+  new IntersectionObserver(([e]) => { visible = e.isIntersecting; schedule(); }, { threshold: .5 }).observe(sec);
+})();
 /* hero video: small autoplaying preview, paused off screen or for reduced motion */
 (function () {
   const v = document.getElementById("hero-video");
